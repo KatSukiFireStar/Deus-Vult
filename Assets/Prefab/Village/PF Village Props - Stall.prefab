@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 299008622165011597}
   - component: {fileID: 1977519015451789516}
+  - component: {fileID: 2517339631868221390}
   m_Layer: 3
   m_Name: PF Village Props Stall Table
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300194, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -84,6 +85,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2517339631868221390
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724164531830669292}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.65625, y: 1.03125}
+    newSize: {x: 2.65625, y: 1.03125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5892843, y: 1.0359406}
+      - {x: -1.328125, y: 1.03125}
+      - {x: -1.328125, y: 0}
+      - {x: 1.328125, y: 0}
+      - {x: 1.3256043, y: 0.78477263}
+      - {x: 0.5901366, y: 0.79036283}
+  m_UseDelaunayMesh: 0
 --- !u!1 &8880890977736793459
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +206,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300192, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -238,7 +290,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300190, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -322,7 +374,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300210, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -406,7 +458,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300190, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -490,7 +542,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300212, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -574,7 +626,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300188, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -706,7 +758,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300206, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -790,7 +842,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 803528193
+  m_SortingLayerID: -1334638257
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300208, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
@@ -882,6 +934,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Village Props - Grain Box
       objectReference: {fileID: 0}
+    - target: {fileID: 7416948081550509474, guid: 945a24dea7767f846ad8007110a371f3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416948081550509474, guid: 945a24dea7767f846ad8007110a371f3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1334638257
+      objectReference: {fileID: 0}
     - target: {fileID: 7416948081550509475, guid: 945a24dea7767f846ad8007110a371f3, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -944,6 +1004,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8880890979157700243}
     m_Modifications:
+    - target: {fileID: 5789200093759024960, guid: ab9278aa8a6f856468c48e893720a765, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5789200093759024960, guid: ab9278aa8a6f856468c48e893720a765, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1334638257
+      objectReference: {fileID: 0}
     - target: {fileID: 5789200093759024974, guid: ab9278aa8a6f856468c48e893720a765, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Crate Small
@@ -1120,6 +1188,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4596042308710791806, guid: 33765db783031c64eb242d22002b9a55, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596042308710791806, guid: 33765db783031c64eb242d22002b9a55, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1334638257
+      objectReference: {fileID: 0}
     - target: {fileID: 4596042308710791807, guid: 33765db783031c64eb242d22002b9a55, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Basket
@@ -1252,6 +1328,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4596042308710791806, guid: 33765db783031c64eb242d22002b9a55, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596042308710791806, guid: 33765db783031c64eb242d22002b9a55, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1334638257
+      objectReference: {fileID: 0}
     - target: {fileID: 4596042308710791807, guid: 33765db783031c64eb242d22002b9a55, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Basket (1)
@@ -1277,6 +1361,14 @@ PrefabInstance:
     - target: {fileID: 4798532672243395371, guid: 838a9c74e6cba734faec44d9be3b765e, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Cauldron
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798532672243395372, guid: 838a9c74e6cba734faec44d9be3b765e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798532672243395372, guid: 838a9c74e6cba734faec44d9be3b765e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1334638257
       objectReference: {fileID: 0}
     - target: {fileID: 4798532672243395373, guid: 838a9c74e6cba734faec44d9be3b765e, type: 3}
       propertyPath: m_RootOrder
