@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796464613234584106}
   - component: {fileID: 796464613234584107}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chain R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1299380106, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796464614501576274}
   - component: {fileID: 796464614501576275}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pully L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 295050240, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796464614684626460}
   - component: {fileID: 796464614684626461}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pully R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,8 +238,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 295050240, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 7931960508526294676}
   - component: {fileID: 5829166629720868302}
   - component: {fileID: 6834880125564507800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,8 +326,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 730316092, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -480,7 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796464614996848183}
   - component: {fileID: 536071244870314531}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PF Village Props - Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796464615045801946}
   - component: {fileID: 796464615045801947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chain L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,8 +596,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 404104737, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

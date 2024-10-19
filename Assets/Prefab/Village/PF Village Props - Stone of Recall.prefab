@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2183321564951531329}
   - component: {fileID: 2183321564951531334}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PF Village Props - Stone of Recall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 803528193
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1758970209, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7562180276227910608}
   - component: {fileID: 8773235307849620067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
