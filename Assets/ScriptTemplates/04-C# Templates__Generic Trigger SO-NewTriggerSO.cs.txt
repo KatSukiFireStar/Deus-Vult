@@ -1,0 +1,14 @@
+using UnityEngine;
+
+namespace EventSystem.SO
+{
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Trigger/#SCRIPTNAME#")]
+    public class #SCRIPTNAME# : GenericTriggerSO<> 
+    {
+        public override void Trigger()
+        {
+            GenericEventSO<> e =  (GenericEventSO<>)EventSO;
+            e.Value = modifier;
+        }
+    }
+}
