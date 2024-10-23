@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 8920628090090496238}
   - component: {fileID: 7252177209599066524}
   m_Layer: 0
-  m_Name: New Palette
+  m_Name: BackGround_Forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
