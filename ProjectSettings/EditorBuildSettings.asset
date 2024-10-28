@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Desert.unity
     guid: a1e581aab3282ab459eabbbdcd8e319d
+  - enabled: 1
+    path: Assets/Scenes/Grotte.unity
+    guid: ed17fa99565ca6746b9979e962477cf0
   m_configObjects: {}
