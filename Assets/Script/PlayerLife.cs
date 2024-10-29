@@ -17,6 +17,9 @@ public class PlayerLife : MonoBehaviour
 	
 	[SerializeField] 
 	private BoolEventSO rollingEvent;
+	
+	[SerializeField] 
+	private BoolEventSO hurtingEvent;
 
 
 	private bool blocking = false;
@@ -59,6 +62,7 @@ public class PlayerLife : MonoBehaviour
 		if (!rolling && !blocking)
 		{
 			playerLife.Value -= s.Value;
+			hurtingEvent.Value = true;
 		}else if (blocking && !rolling)
 		{
 			playerLife.Value -= (s.Value / 2);

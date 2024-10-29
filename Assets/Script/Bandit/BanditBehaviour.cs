@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.ComponentModel;
+using EventSystem.SO;
 
 public class BanditBehaviour : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class BanditBehaviour : MonoBehaviour
     private bool m_isAttacking = false;
     private float inputX = -1;
     private float saveInputX;
+    private bool m_takeDamage = false;
+    private bool m_isHurt = false;
+    private bool m_dying = false;
 
     [SerializeField]
     private int minX;
@@ -26,6 +31,24 @@ public class BanditBehaviour : MonoBehaviour
 
     [SerializeField]
     private LayerMask layerMask;
+
+    [SerializeField]
+    private BoolEventSO takeDamageEvent;
+
+    public BoolEventSO TakeDamageEvent
+    {
+        get => takeDamageEvent;
+        set => takeDamageEvent = value;
+    }
+    
+    [SerializeField] 
+    private BoolEventSO deadEvent;
+
+    public BoolEventSO DeadEvent
+    {
+        get => deadEvent;
+        set => deadEvent = value;
+    }
 
     void Start()
     {
@@ -37,8 +60,33 @@ public class BanditBehaviour : MonoBehaviour
         saveInputX = inputX;
     }
 
+    public void AddSuscribe()
+    {
+        takeDamageEvent.PropertyChanged += TakeDamageEventOnPropertyChanged;
+    }
+
+    public void AddSuscribeDead()
+    {
+        deadEvent.PropertyChanged += DeadEventOnPropertyChanged;
+    }
+
+    private void DeadEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_isDead = true;
+    }
+
+    private void TakeDamageEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_takeDamage = s.Value;
+    }
+
     void Update()
     {
+        if (m_dying)
+            return;
+        
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
             m_spriteRenderer.flipX = true;
@@ -53,7 +101,8 @@ public class BanditBehaviour : MonoBehaviour
         }
 
         // Move
-        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+        if(!m_isHurt)
+            m_body2d.velocity = new Vector2(inputX * m_speed, 0);
 
         RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 2.5f,
             layerMask);
@@ -71,7 +120,7 @@ public class BanditBehaviour : MonoBehaviour
             }
         }
 
-        if (!m_isAttacking)
+        if (!m_isAttacking && !m_isHurt)
         {
             if (hitb && !attackb)
             {
@@ -81,6 +130,7 @@ public class BanditBehaviour : MonoBehaviour
             else if (attackb)
             {
                 m_attack = true;
+                inputX = 0;
             }
             else
             {
@@ -91,19 +141,21 @@ public class BanditBehaviour : MonoBehaviour
 
 
         //Death
-        if (Input.GetKeyDown("e"))
+        if (m_isDead)
         {
-            if (!m_isDead)
-                m_animator.SetTrigger("Death");
-            else
-                m_animator.SetTrigger("Recover");
-
-            m_isDead = !m_isDead;
+            m_animator.SetTrigger("Death");
+            m_body2d.velocity = new Vector2(0, 0);
+            m_dying = true;
         }
 
         //Hurt
-        else if (Input.GetKeyDown("q"))
+        else if (m_takeDamage && !m_isHurt)
+        {
             m_animator.SetTrigger("Hurt");
+            m_isHurt = true;
+            m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+        }
+            
 
         //Attack
         else if (m_attack && !m_isAttacking)
@@ -129,5 +181,19 @@ public class BanditBehaviour : MonoBehaviour
     {
         m_isAttacking = false;
         m_attack = false;
+    }
+
+    public void EndHurting()
+    {
+        takeDamageEvent.Value = false;
+        m_isHurt = false;
+        inputX = saveInputX;
+        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+        EndAttacking();
+    }
+
+    public void EndDeath()
+    {
+        Destroy(gameObject);
     }
 }
