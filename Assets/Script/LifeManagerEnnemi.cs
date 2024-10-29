@@ -42,7 +42,6 @@ public class LifeManagerEnnemi : MonoBehaviour
 	private void LifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
-		Debug.Log(s.Value);
 		takeDamageEventSO.Value = true;
 		if (s.Value <= 0)
 		{

@@ -41,7 +41,7 @@ public class PlayerLife : MonoBehaviour
 	private void PlayerLifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
-		Debug.Log(s.Value);
+		//Todo : Ajouter gestion de la vie quand elle atteint zero
 	}
 
 	private void RollingEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -58,6 +58,7 @@ public class PlayerLife : MonoBehaviour
 
 	private void DamageEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//Todo : Verifiez que la vie ne descend pas en dessous de 0
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		if (!rolling && !blocking)
 		{
