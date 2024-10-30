@@ -89,9 +89,15 @@ public class BanditBehaviour : MonoBehaviour
         
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
+        {
             m_spriteRenderer.flipX = true;
+            transform.GetChild(1).localScale = new(-1, 1, 1);
+        }
         else if (inputX < 0)
+        {
             m_spriteRenderer.flipX = false;
+            transform.GetChild(1).localScale = new(1, 1, 1);
+        }
 
         if ((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0))
         {

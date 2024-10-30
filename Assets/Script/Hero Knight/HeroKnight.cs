@@ -108,12 +108,14 @@ public class HeroKnight : MonoBehaviour
         if (inputX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            transform.GetChild(1).localScale = new(1, 1, 1);
             m_facingDirection = 1;
         }
 
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            transform.GetChild(1).localScale = new(-1, 1, 1);
             m_facingDirection = -1;
         }
 

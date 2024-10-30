@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8b435a8dc3f604e9a13c4acd7081c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 4
+  m_speed: 2
   minX: 0
   maxX: 0
   layerMask:
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98938dca43de3f4590304b8334649e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTrigger: {fileID: 11400000, guid: 3ae5a0eeea4026b43b877a4bc92be286, type: 2}
+  damageTrigger: {fileID: 11400000, guid: 131718bc8194f5b4186b8e88c451a364, type: 2}
 --- !u!1001 &2815607823142496793
 PrefabInstance:
   m_ObjectHideFlags: 0
