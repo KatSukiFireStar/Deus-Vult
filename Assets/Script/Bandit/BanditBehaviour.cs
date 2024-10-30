@@ -189,7 +189,6 @@ public class BanditBehaviour : MonoBehaviour
         m_isHurt = false;
         inputX = saveInputX;
         m_body2d.velocity = new Vector2(inputX * m_speed, 0);
-        EndAttacking();
     }
 
     public void EndDeath()
