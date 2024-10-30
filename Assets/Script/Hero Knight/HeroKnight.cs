@@ -33,6 +33,7 @@ public class HeroKnight : MonoBehaviour
     private bool m_rolling = false;
     private bool m_takeDamage = false;
     private bool m_isHurt = false;
+    private bool m_isPraying = false;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -137,6 +138,17 @@ public class HeroKnight : MonoBehaviour
         {
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
+        }
+        
+        //Pray
+        else if (Input.GetKeyDown(KeyCode.P) && !m_isPraying)
+        {
+            m_animator.SetTrigger("Pray");
+            m_isPraying = true;
+        }else if (Input.GetKeyDown(KeyCode.P) && m_isPraying)
+        {
+            m_animator.SetTrigger("EndPray");
+            m_isPraying = false;
         }
 
         //Hurt
