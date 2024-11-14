@@ -1,12 +1,18 @@
 using System;
 using System.ComponentModel;
 using EventSystem.SO;
+using Script;
 using UnityEngine;
 
 public class LifeManagerEnnemi : MonoBehaviour
 {
 	[SerializeField] 
 	private IntEventSO lifeEvent;
+
+	[SerializeField] 
+	private EnnemiEnum ennemiType;
+
+	private BanditBehaviour _banditBehaviour;
 	
 	public IntEventSO LifeEvent
 	{
@@ -28,9 +34,13 @@ public class LifeManagerEnnemi : MonoBehaviour
 	private void Awake()
 	{
 		BoolEventSO deadEvent = ScriptableObject.CreateInstance<BoolEventSO>();
-		BanditBehaviour bb = gameObject.GetComponent<BanditBehaviour>();
-		bb.DeadEvent = deadEvent;
-		bb.AddSuscribeDead();
+		
+		if (ennemiType == EnnemiEnum.Bandit)
+		{
+			_banditBehaviour = gameObject.GetComponent<BanditBehaviour>();
+			_banditBehaviour.DeadEvent = deadEvent;
+			_banditBehaviour.AddSuscribeDead();
+		}
 		deadEventSO = deadEvent;
 	}
 
