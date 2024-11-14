@@ -12,6 +12,9 @@ public class AttackManager : MonoBehaviour
 		if (other.gameObject.CompareTag("Ennemi"))
 		{
 			other.gameObject.GetComponent<LifeManagerEnnemi>().LifeEvent.Value -= attackPoint;
+		}else if (other.gameObject.CompareTag("DemonSlime"))
+		{
+			other.gameObject.GetComponent<LifeManagerDemonSlime>().LifeEvent.Value -= attackPoint;
 		}
 	}
 }
