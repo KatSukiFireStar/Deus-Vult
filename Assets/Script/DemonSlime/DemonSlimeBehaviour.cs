@@ -52,6 +52,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         //ToDo: Remove the next line
         m_start = true;
         inputX = -1;
+        saveInputX = inputX;
         m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -63,6 +64,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         {
             m_player = GameObject.FindGameObjectWithTag("Player");
             inputX = -1;
+            saveInputX = inputX;
         }
     }
 
@@ -71,7 +73,13 @@ public class DemonSlimeBehaviour : MonoBehaviour
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
         m_transform = s.Value;
         m_isTransforming = s.Value;
-        m_animator.SetTrigger("Transform");
+        if (s.Value)
+        {
+            inputX = 0;
+            m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+            m_animator.SetBool("Transform", true);
+            m_animator.SetTrigger("Transformation");
+        }
     }
 
     private void DeadEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -132,27 +140,45 @@ public class DemonSlimeBehaviour : MonoBehaviour
             for (int i = 2; i < transform.childCount; i++)
                 transform.GetChild(i).localScale = new(1, 1, 1);
         }
-
-        if ((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0))
-        {
-            inputX *= -1;
-            if(inputX != 0)
-                saveInputX = inputX;
-        }
         
         // Move
         if(!m_isHurt)
             m_body2d.velocity = new Vector2(inputX * m_speed, 0);
-        else if (!m_transform && m_takeDamage)
-        {
-            m_animator.SetTrigger("Hurt");
-            m_isHurt = true;
-            m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
-        }
         
         //If the slime isn't transformed we stop it
         //The 1st phase can only walk from two point and take damage
         if (!m_transform)
+        {
+            //Contextual animation
+            //Damage Anim
+            if (!m_transform && m_takeDamage && !m_isHurt)
+            {
+                m_animator.SetTrigger("Hit");
+                inputX = 0;
+                m_isHurt = true;
+                m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+            }
+            //Move Anim
+            else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+                m_animator.SetInteger("AnimState", 1);
+            
             return;
+        }
+    }
+    
+    public void EndHurting()
+    {
+        takeDamageEventSO.Value = false;
+        m_isHurt = false;
+        inputX = saveInputX;
+        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+    }
+    
+    public void EndTransforming()
+    {
+        m_isTransforming = false;
+        m_transform = true;
+        transform.GetChild(1).gameObject.SetActive(true);
+        GetComponent<LifeManagerDemonSlime>().ReSuscribeLife();
     }
 }

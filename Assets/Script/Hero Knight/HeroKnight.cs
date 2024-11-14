@@ -40,6 +40,8 @@ public class HeroKnight : MonoBehaviour
     private float m_delayToIdle = 0.0f;
     private float m_rollDuration = 8.0f / 14.0f;
     private float m_rollCurrentTime;
+
+    private float m_yPosBeforeRoll;
     
     [SerializeField] 
     private BoolEventSO hurtEvent;
@@ -86,7 +88,10 @@ public class HeroKnight : MonoBehaviour
 
         // Disable rolling if timer extends duration
         if (m_rollCurrentTime > m_rollDuration)
+        {
             m_rolling = false;
+            m_rollCurrentTime = 0;
+        }
 
         //Check if character just landed on the ground
         if (!m_grounded && m_groundSensor.State())
@@ -123,6 +128,11 @@ public class HeroKnight : MonoBehaviour
         // Move
         if (!m_rolling && !m_isHurt)
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        else if (m_rolling)
+        {
+            m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce * m_speed, m_body2d.velocity.y);
+            transform.position = new(transform.position.x, m_yPosBeforeRoll);
+        }
 
         //Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -191,11 +201,11 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetBool("IdleBlock", false);
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
-            m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
+            m_yPosBeforeRoll = transform.position.y;
         }
 
         //Jump

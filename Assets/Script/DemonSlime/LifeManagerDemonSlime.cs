@@ -36,18 +36,22 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void Awake()
 	{
-		transformEventSO.PropertyChanged += TransformEventSOOnPropertyChanged;
-	}
-
-	private void Start()
-	{
 		lifeEvent.Value = life;
+		transformEventSO.Value = false;
+		transformEventSO.PropertyChanged += TransformEventSOOnPropertyChanged;
+		lifeEvent.PropertyChanged += LifeEventOnPropertyChanged;
 	}
 
 	private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		transform.GetChild(0).gameObject.SetActive(false);
+		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
+	}
+
+	public void ReSuscribeLife()
+	{
 		lifeEvent.Value = life2ndPhase;
-		Destroy(transform.GetChild(0));
+		lifeEvent.PropertyChanged += LifeEventOnPropertyChanged;
 	}
 
 	private void LifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)

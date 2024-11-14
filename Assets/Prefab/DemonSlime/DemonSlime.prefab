@@ -430,11 +430,11 @@ GameObject:
   m_Component:
   - component: {fileID: 9092392602667559490}
   - component: {fileID: 160331321213656218}
+  - component: {fileID: 8990056332961173998}
   - component: {fileID: 3575712289871753528}
   - component: {fileID: 6501294030498309253}
   - component: {fileID: 1729992576770527311}
   - component: {fileID: 4445763790747771253}
-  - component: {fileID: 8990056332961173998}
   m_Layer: 0
   m_Name: DemonSlime
   m_TagString: DemonSlime
@@ -484,6 +484,24 @@ MonoBehaviour:
   deadEventSO: {fileID: 11400000, guid: b5a556ab7fbd71840b0f5b88bf370d97, type: 2}
   transformEventSO: {fileID: 11400000, guid: c2cb2299a3f9c094f82c261cd3d1aff0, type: 2}
   startEventSO: {fileID: 11400000, guid: e61336f8966878149b6641fd36523ee8, type: 2}
+--- !u!114 &8990056332961173998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619271722051640008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b2e929202551b4f83aab97b0ddce9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 50
+  life2ndPhase: 250
+  lifeEvent: {fileID: 11400000, guid: 655877828395cff4fa1890babd8f25c9, type: 2}
+  takeDamageEventSO: {fileID: 11400000, guid: 350458cd6806a05479b5d5f5512e2e63, type: 2}
+  deadEventSO: {fileID: 11400000, guid: b5a556ab7fbd71840b0f5b88bf370d97, type: 2}
+  transformEventSO: {fileID: 11400000, guid: c2cb2299a3f9c094f82c261cd3d1aff0, type: 2}
 --- !u!95 &3575712289871753528
 Animator:
   serializedVersion: 5
@@ -629,24 +647,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9194827, y: 3.6869488}
   m_EdgeRadius: 0
---- !u!114 &8990056332961173998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6619271722051640008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16b2e929202551b4f83aab97b0ddce9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 50
-  life2ndPhase: 250
-  lifeEvent: {fileID: 11400000, guid: 655877828395cff4fa1890babd8f25c9, type: 2}
-  takeDamageEventSO: {fileID: 11400000, guid: 350458cd6806a05479b5d5f5512e2e63, type: 2}
-  deadEventSO: {fileID: 11400000, guid: b5a556ab7fbd71840b0f5b88bf370d97, type: 2}
-  transformEventSO: {fileID: 11400000, guid: c2cb2299a3f9c094f82c261cd3d1aff0, type: 2}
 --- !u!1 &6703576289743718191
 GameObject:
   m_ObjectHideFlags: 0
