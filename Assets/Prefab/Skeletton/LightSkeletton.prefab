@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805181885227780}
   - component: {fileID: 95346456782871180}
+  - component: {fileID: 2650011088619599128}
   - component: {fileID: 212259381048184306}
   - component: {fileID: 50512961935941442}
   - component: {fileID: 61252362154681264}
@@ -60,6 +61,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2650011088619599128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30746606ba133448a7f647dcf9e86c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 4
+  minX: 0
+  maxX: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  takeDamageEvent: {fileID: 0}
+  deadEvent: {fileID: 0}
 --- !u!212 &212259381048184306
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeEvent: {fileID: 0}
+  ennemiType: 1
   takeDamageEventSO: {fileID: 0}
 --- !u!114 &4144036293656588184
 MonoBehaviour:
@@ -210,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8412f02bed5065d4ea8bf0cb339f365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ennemiType: 1
 --- !u!1 &7129134653951460664
 GameObject:
   m_ObjectHideFlags: 0
