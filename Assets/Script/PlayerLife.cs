@@ -19,9 +19,6 @@ public class PlayerLife : MonoBehaviour
 	private BoolEventSO blockingEvent;
 	
 	[SerializeField] 
-	private BoolEventSO rollingEvent;
-	
-	[SerializeField] 
 	private BoolEventSO hurtingEvent;
 
 	[SerializeField] 
@@ -35,7 +32,6 @@ public class PlayerLife : MonoBehaviour
 	{
 		damageEvent.PropertyChanged += DamageEventOnPropertyChanged;
 		blockingEvent.PropertyChanged += BlockingEventOnPropertyChanged;
-		rollingEvent.PropertyChanged += RollingEventOnPropertyChanged;
 		playerLife.PropertyChanged += PlayerLifeOnPropertyChanged;
 		_healingEvent.PropertyChanged += HealingEventOnPropertyChanged;
 	}
@@ -61,12 +57,6 @@ public class PlayerLife : MonoBehaviour
 		{
 			playerLife.Value = _maxLifeEvent.Value;
 		}
-	}
-
-	private void RollingEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-	{
-		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
-		rolling = s.Value;
 	}
 
 	private void BlockingEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)

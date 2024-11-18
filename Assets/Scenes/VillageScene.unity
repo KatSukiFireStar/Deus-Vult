@@ -8466,18 +8466,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 160331321213656218, guid: 6cd6a93a010a30741bc745b4f8799717, type: 3}
-      propertyPath: maxX
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087035192049830947, guid: 6cd6a93a010a30741bc745b4f8799717, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087035192049830947, guid: 6cd6a93a010a30741bc745b4f8799717, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6619271722051640008, guid: 6cd6a93a010a30741bc745b4f8799717, type: 3}
       propertyPath: m_Name
       value: DemonSlime

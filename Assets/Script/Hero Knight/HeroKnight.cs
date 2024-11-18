@@ -128,6 +128,8 @@ public class HeroKnight : MonoBehaviour
         // Move
         if (!m_rolling && !m_isHurt)
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        else if (m_isHurt)
+            m_body2d.velocity = new Vector2(-m_facingDirection * m_speed * 2, m_body2d.velocity.y);
         else if (m_rolling)
         {
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce * m_speed, m_body2d.velocity.y);
@@ -166,7 +168,7 @@ public class HeroKnight : MonoBehaviour
         {
             m_animator.SetTrigger("Hurt");
             m_isHurt = true;
-            m_body2d.velocity = new Vector2(-m_facingDirection * m_speed, m_body2d.velocity.y);
+            m_body2d.velocity = new Vector2(-m_facingDirection * m_speed * 2, m_body2d.velocity.y);
         }
             
 

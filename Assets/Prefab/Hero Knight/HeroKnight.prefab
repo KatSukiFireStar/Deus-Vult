@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 3836970338421905413}
   - component: {fileID: 695718212448736047}
   - component: {fileID: 2589790986625232593}
+  - component: {fileID: 1230896157095989061}
+  - component: {fileID: 8464047279408439412}
   m_Layer: 6
   m_Name: HeroKnight
   m_TagString: Player
@@ -318,7 +320,6 @@ MonoBehaviour:
   damageEvent: {fileID: 11400000, guid: 2067919a6f6fb0049a12325a9917cef4, type: 2}
   _healingEvent: {fileID: 11400000, guid: 83ac4770d9e3695439b7f62b053e2767, type: 2}
   blockingEvent: {fileID: 11400000, guid: de266ce728d3cbf4da5e2127ede6a3f0, type: 2}
-  rollingEvent: {fileID: 11400000, guid: 658a574d50c35c0439a8594cf4ceadc6, type: 2}
   hurtingEvent: {fileID: 11400000, guid: b7571a979f58037448e4d5b988f310d2, type: 2}
   _maxLifeEvent: {fileID: 11400000, guid: a4263e9874823db4dbef41930bf9055b, type: 2}
 --- !u!114 &2589790986625232593
@@ -334,7 +335,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockingEvent: {fileID: 11400000, guid: de266ce728d3cbf4da5e2127ede6a3f0, type: 2}
-  rollingEvent: {fileID: 11400000, guid: 658a574d50c35c0439a8594cf4ceadc6, type: 2}
+--- !u!61 &1230896157095989061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.662}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.125, y: 1.71875}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.73, y: 1.2}
+  m_EdgeRadius: 0
+--- !u!114 &8464047279408439412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4709b52e66c8fae44ae74a1b822260c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTrigger: {fileID: 11400000, guid: b8447c7ea804db64ba189dcca36f2ede, type: 2}
+  hurtEvent: {fileID: 11400000, guid: b7571a979f58037448e4d5b988f310d2, type: 2}
 --- !u!1 &6696459471675474003
 GameObject:
   m_ObjectHideFlags: 0

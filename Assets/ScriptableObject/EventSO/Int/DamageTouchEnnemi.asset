@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80741378a0712984e9c9b175f7f95890, type: 3}
-  m_Name: RollingEvent
+  m_Script: {fileID: 11500000, guid: 14ec3aa2e2409e24e86d77923530c50c, type: 3}
+  m_Name: DamageTouchEnnemi
   m_EditorClassIdentifier: 
+  events: {fileID: 11400000, guid: 2067919a6f6fb0049a12325a9917cef4, type: 2}
+  modifier: 2
