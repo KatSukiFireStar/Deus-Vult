@@ -480,6 +480,7 @@ MonoBehaviour:
   m_speed: 1
   minX: 0
   maxX: 0
+  deltaAttack: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -500,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 50
-  life2ndPhase: 250
+  life2ndPhase: 2500
   lifeEvent: {fileID: 11400000, guid: 655877828395cff4fa1890babd8f25c9, type: 2}
   takeDamageEventSO: {fileID: 11400000, guid: 350458cd6806a05479b5d5f5512e2e63, type: 2}
   deadEventSO: {fileID: 11400000, guid: b5a556ab7fbd71840b0f5b88bf370d97, type: 2}
@@ -590,7 +591,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 80
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -912,6 +913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624933245180986202}
   - component: {fileID: 1377680119475754725}
+  - component: {fileID: 9214949633871048513}
   m_Layer: 0
   m_Name: ColliderAttack
   m_TagString: Untagged
@@ -979,6 +981,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3738146, y: 3.2324486}
   m_EdgeRadius: 0
+--- !u!114 &9214949633871048513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9205599531737110792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1b2c3ab13bee844bbd786de1cde526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTriggers:
+  - {fileID: 11400000, guid: e0764ccc5608a9a44b7f95378078ce2b, type: 2}
+  - {fileID: 11400000, guid: e9371a6c83f498042ba7cb587d37f480, type: 2}
+  - {fileID: 11400000, guid: 531d91bb9bfaa104691725a17fed5d81, type: 2}
+  - {fileID: 11400000, guid: 23bb0174d856f384d9e7e9faea3d4ecc, type: 2}
 --- !u!1001 &2960064894393831182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1111,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 655877828395cff4fa1890babd8f25c9, type: 2}
     - target: {fileID: 18902503897066940, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: lifePoint
-      value: 250
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_Pivot.x

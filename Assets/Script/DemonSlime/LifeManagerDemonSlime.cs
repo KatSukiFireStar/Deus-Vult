@@ -61,6 +61,7 @@ public class LifeManagerDemonSlime : MonoBehaviour
 		if (s.Value <= 0 && transformEventSO.Value)
 		{
 			deadEventSO.Value = true; 
+			s.Value = 0;
 		}else if (s.Value <= 0 && !transformEventSO.Value)
 		{
 			transformEventSO.Value = true;
