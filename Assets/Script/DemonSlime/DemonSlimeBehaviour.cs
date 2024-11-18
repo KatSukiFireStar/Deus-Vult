@@ -13,6 +13,8 @@ public class DemonSlimeBehaviour : MonoBehaviour
     private int minX;
     [SerializeField]
     private int maxX;
+    [SerializeField] 
+    private float deltaAttack;
     
     [Header("Collision layer")]
     [SerializeField]
@@ -44,6 +46,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
     private bool m_isTransforming = false;
     private bool m_start = false;
     private int m_numAttack = -1;
+    private float m_lastAttack;
     
     private GameObject m_player;
     
@@ -53,6 +56,8 @@ public class DemonSlimeBehaviour : MonoBehaviour
         deadEventSO.PropertyChanged += DeadEventSOOnPropertyChanged;
         transformEventSO.PropertyChanged += TransformEventSOOnPropertyChanged;
         startEventSO.PropertyChanged += StartEventSOOnPropertyChanged;
+
+        m_lastAttack = deltaAttack;
         
         //ToDo: Remove the next line
         m_start = true;
@@ -130,6 +135,13 @@ public class DemonSlimeBehaviour : MonoBehaviour
             {
                 inputX = 1;
             }
+            if(inputX != 0)
+                saveInputX = inputX;
+        }
+
+        if (m_lastAttack > 0 && !m_isAttacking)
+        {
+            m_lastAttack -= Time.deltaTime;
         }
         
         // Swap direction of sprite depending on walk direction
@@ -142,13 +154,12 @@ public class DemonSlimeBehaviour : MonoBehaviour
         else if (inputX < 0)
         {
             m_spriteRenderer.flipX = false;
-            for (int i = 2; i < transform.childCount; i++)
+            for (int i = 3; i < transform.childCount; i++)
                 transform.GetChild(i).localScale = new(1, 1, 1);
         }
         
         // Move
-        if(!m_isHurt)
-            m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
         
         //If the slime isn't transformed we stop it
         //The 1st phase can only walk from two point and take damage
@@ -172,37 +183,47 @@ public class DemonSlimeBehaviour : MonoBehaviour
         
         RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 5f,
             layerMask);
+        float dist = -1;
         bool attackb = false;
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider != null)
             {
-                if(m_numAttack != -1)
+                if (m_numAttack != -1 || m_lastAttack > 0f)
                     break;
                 
-                if (hit.distance < 1f)
-                {
-                    attackb = true;
-                    m_numAttack = Random.Range(0, 2);
-                }
-                else if (hit.distance < 3f)
+                dist = hit.distance;
+                
+                if (hit.distance <= 1f)
                 {
                     m_numAttack = Random.Range(0, 3);
-                    if (m_numAttack >= 2)
-                    {
-                        attackb = true;
-                    }
                 }
+                else if (hit.distance <= 5f)
+                {
+                   m_numAttack = Random.Range(0, 4);
+
+                   if (m_numAttack == 3 && inputX > 0)
+                   {
+                       m_numAttack = 2;
+                   }
+                }
+                m_animator.SetInteger("AttackNb", m_numAttack);
             }
         }
-
-        if (!m_isAttacking && attackb)
+        
+        if (!m_isAttacking)
         {
-            inputX = 0;
-        }
-        else if (!attackb)
-        {
-            inputX = saveInputX;
+            if (m_numAttack >= 2)
+            {
+                m_attack = true;
+            }
+            else if (m_numAttack >= 0)
+            {
+                if (dist <= 0.5f)
+                {
+                    m_attack = true;
+                }
+            }
         }
         
         //Death
@@ -217,19 +238,19 @@ public class DemonSlimeBehaviour : MonoBehaviour
         else if (m_attack && !m_isAttacking)
         {
             m_animator.SetTrigger("Attack");
-            m_animator.SetInteger("AttackNb", m_numAttack);
+            inputX = 0;
             m_isAttacking = true;
         }
-
+        
         //Hurt
-        else if (m_takeDamage && !m_isHurt)
+        else if (m_takeDamage && !m_isHurt && !m_isAttacking)
         {
             m_animator.SetTrigger("Hit");
             inputX = 0;
             m_isHurt = true;
             m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
         }
-
+        
         //Run
         else if (Mathf.Abs(inputX) > Mathf.Epsilon)
             m_animator.SetInteger("AnimState", 1);
@@ -244,13 +265,16 @@ public class DemonSlimeBehaviour : MonoBehaviour
         m_isAttacking = false;
         m_attack = false;
         m_numAttack = -1;
+        inputX = saveInputX;
+        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+        m_lastAttack = deltaAttack;
     }
     
     public void EndHurting()
     {
+        inputX = saveInputX;
         takeDamageEventSO.Value = false;
         m_isHurt = false;
-        inputX = saveInputX;
         m_body2d.velocity = new Vector2(inputX * m_speed, 0);
     }
     
