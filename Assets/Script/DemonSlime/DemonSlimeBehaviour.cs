@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using EventSystem.SO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DemonSlimeBehaviour : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class DemonSlimeBehaviour : MonoBehaviour
     [SerializeField]
     private int maxX;
     
+    [Header("Collision layer")]
+    [SerializeField]
+    private LayerMask layerMask;
     
     [Header("Events")]
     [SerializeField] 
@@ -39,6 +43,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
     private bool m_transform = false;
     private bool m_isTransforming = false;
     private bool m_start = false;
+    private int m_numAttack = -1;
     
     private GameObject m_player;
     
@@ -117,11 +122,11 @@ public class DemonSlimeBehaviour : MonoBehaviour
         }
         else
         {
-            if (m_player.transform.position.x < transform.position.x)
+            if (!m_isHurt && !m_isAttacking && m_player.transform.position.x < transform.position.x)
             {
                 inputX = -1;
             }
-            else
+            else if (!m_isHurt && !m_isAttacking && m_player.transform.position.x > transform.position.x)
             {
                 inputX = 1;
             }
@@ -151,7 +156,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         {
             //Contextual animation
             //Damage Anim
-            if (!m_transform && m_takeDamage && !m_isHurt)
+            if (m_takeDamage && !m_isHurt)
             {
                 m_animator.SetTrigger("Hit");
                 inputX = 0;
@@ -164,6 +169,81 @@ public class DemonSlimeBehaviour : MonoBehaviour
             
             return;
         }
+        
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 5f,
+            layerMask);
+        bool attackb = false;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                if(m_numAttack != -1)
+                    break;
+                
+                if (hit.distance < 1f)
+                {
+                    attackb = true;
+                    m_numAttack = Random.Range(0, 2);
+                }
+                else if (hit.distance < 3f)
+                {
+                    m_numAttack = Random.Range(0, 3);
+                    if (m_numAttack >= 2)
+                    {
+                        attackb = true;
+                    }
+                }
+            }
+        }
+
+        if (!m_isAttacking && attackb)
+        {
+            inputX = 0;
+        }
+        else if (!attackb)
+        {
+            inputX = saveInputX;
+        }
+        
+        //Death
+        if (m_isDead)
+        {
+            m_animator.SetTrigger("Death");
+            m_body2d.velocity = new Vector2(0, 0);
+            m_dying = true;
+        }
+        
+        //Attack
+        else if (m_attack && !m_isAttacking)
+        {
+            m_animator.SetTrigger("Attack");
+            m_animator.SetInteger("AttackNb", m_numAttack);
+            m_isAttacking = true;
+        }
+
+        //Hurt
+        else if (m_takeDamage && !m_isHurt)
+        {
+            m_animator.SetTrigger("Hit");
+            inputX = 0;
+            m_isHurt = true;
+            m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+        }
+
+        //Run
+        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+            m_animator.SetInteger("AnimState", 1);
+
+        //Idle
+        else
+            m_animator.SetInteger("AnimState", 0);
+    }
+    
+    public void EndAttacking()
+    {
+        m_isAttacking = false;
+        m_attack = false;
+        m_numAttack = -1;
     }
     
     public void EndHurting()
