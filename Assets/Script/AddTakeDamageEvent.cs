@@ -20,6 +20,13 @@ public class AddTakeDamageEvent : MonoBehaviour
             
             gameObject.GetComponent<LifeManagerEnnemi>().TakeDamageEventSO = boolEventSO;
             gameObject.GetComponent<BanditBehaviour>().TakeDamageEvent.Value = false;
+		}else if (ennemiType == EnnemiEnum.Skeleton)
+		{
+			gameObject.GetComponent<SkelettonBehaviour>().TakeDamageEvent = boolEventSO;
+			gameObject.GetComponent<SkelettonBehaviour>().AddSuscribe();
+            
+			gameObject.GetComponent<LifeManagerEnnemi>().TakeDamageEventSO = boolEventSO;
+			gameObject.GetComponent<SkelettonBehaviour>().TakeDamageEvent.Value = false;
 		}
 		
 	}

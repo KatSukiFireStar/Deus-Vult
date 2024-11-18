@@ -14,6 +14,8 @@ public class LifeManagerEnnemi : MonoBehaviour
 
 	private BanditBehaviour _banditBehaviour;
 	
+	private SkelettonBehaviour _skelettonBehaviour;
+	
 	public IntEventSO LifeEvent
 	{
 		get => lifeEvent;
@@ -40,6 +42,11 @@ public class LifeManagerEnnemi : MonoBehaviour
 			_banditBehaviour = gameObject.GetComponent<BanditBehaviour>();
 			_banditBehaviour.DeadEvent = deadEvent;
 			_banditBehaviour.AddSuscribeDead();
+		} else if (ennemiType == EnnemiEnum.Skeleton)
+		{
+			_skelettonBehaviour = gameObject.GetComponent<SkelettonBehaviour>();
+			_skelettonBehaviour.DeadEvent = deadEvent;
+			_skelettonBehaviour.AddSuscribeDead();
 		}
 		deadEventSO = deadEvent;
 	}

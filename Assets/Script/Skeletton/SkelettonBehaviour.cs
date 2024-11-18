@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using EventSystem.SO;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class SkelettonBehaviour : MonoBehaviour
@@ -15,14 +16,15 @@ public class SkelettonBehaviour : MonoBehaviour
     private bool m_grounded = false;
     private bool m_combatIdle = false;
     private bool m_isDead = false;
-    private bool m_attackA = false;
-    private bool m_attackB = false;
+    private bool m_attackA = true;
     private bool m_isAttacking = false;
     private float inputX = -1;
     private float saveInputX;
     private bool m_takeDamage = false;
     private bool m_isHurt = false;
     private bool m_dying = false;
+    private float _targetX = 0;
+    private bool _moveTowards = false;
     
     [SerializeField]
     private int minX;
@@ -93,16 +95,16 @@ public class SkelettonBehaviour : MonoBehaviour
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
-            m_spriteRenderer.flipX = true;
+            m_spriteRenderer.flipX = false;
             transform.GetChild(1).localScale = new(-1, 1, 1);
         }
         else if (inputX < 0)
         {
-            m_spriteRenderer.flipX = false;
+            m_spriteRenderer.flipX = true;
             transform.GetChild(1).localScale = new(1, 1, 1);
         }
         
-        if ((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0))
+        if (((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0)) && !_moveTowards)
         {
             inputX *= -1;
             if(inputX != 0)
@@ -119,22 +121,86 @@ public class SkelettonBehaviour : MonoBehaviour
         
         bool hitb = false;
         bool attackb = false;
-        bool moveTowards = false;
+
         
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider != null)
             {
                 hitb = true;
-                if (hit.distance < 0.5f)
+                if (hit.distance < 1f)
                 {
                     attackb = true; // We're close enough to attack
+                    _moveTowards = false;
                 }
-                else if (hit.distance < 2f) 
+                else if (hit.distance < 20f) 
                 {
-                    moveTowards = true; // We're in the chasing range
+                    _moveTowards = true; // We're in the chasing range
+                    _targetX = hit.transform.position.x;
+                }
+                else
+                {
+                    _moveTowards = false;
                 }
             }
         }
+        
+        //Death
+        if (m_isDead)
+        {
+            m_animator.SetTrigger("Death");
+            m_body2d.velocity = new Vector2(0, 0);
+            m_dying = true;
+        }else if (m_takeDamage && !m_isHurt) // Hurting
+        {
+            m_animator.SetTrigger("Hit");
+            m_isHurt = true;
+            m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+        }else if (_moveTowards && !m_isAttacking && !m_isHurt) // We chase the player
+        {
+            if (transform.position.x - _targetX > 0)
+            {
+                inputX = -1;
+            }
+            else
+            {
+                inputX = 1;
+            }
+        }else if (attackb && !m_isAttacking)
+        {
+            inputX = 0;
+            if (m_attackA)
+            {
+                m_animator.SetTrigger("AttackA");
+                m_attackA = false;
+            }
+            else
+            {
+                m_attackA = true;
+                m_animator.SetTrigger("AttackB");
+            }
+            m_isAttacking = true;
+        }
+        
+        
+    }
+    
+    public void EndAttacking()
+    {
+        m_isAttacking = false;
+    }
+
+    public void EndHurting()
+    {
+        EndAttacking();
+        takeDamageEvent.Value = false;
+        m_isHurt = false;
+        inputX = saveInputX;
+        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+    }
+
+    public void EndDeath()
+    {
+        Destroy(gameObject);
     }
 }
