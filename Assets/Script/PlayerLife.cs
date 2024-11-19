@@ -20,9 +20,12 @@ public class PlayerLife : MonoBehaviour
 	
 	[SerializeField] 
 	private BoolEventSO hurtingEvent;
-
+	
 	[SerializeField] 
 	private IntEventSO _maxLifeEvent;
+	
+	[SerializeField] 
+	private BoolEventSO deathEvent;
 	
 
 	private bool blocking = false;
@@ -40,7 +43,10 @@ public class PlayerLife : MonoBehaviour
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		playerLife.Value += s.Value;
-
+		if (s.Value > _maxLifeEvent.Value)
+		{
+			s.Value = _maxLifeEvent.Value;
+		}
 	}
 
 	private void Start()
@@ -73,6 +79,11 @@ public class PlayerLife : MonoBehaviour
 		{
 			playerLife.Value -= s.Value;
 			hurtingEvent.Value = true;
+			if (playerLife.Value <= 0)
+			{
+				playerLife.Value = 0;
+				deathEvent.Value = true;
+			}
 		}else if (blocking && !rolling)
 		{
 			playerLife.Value -= (s.Value / 2);

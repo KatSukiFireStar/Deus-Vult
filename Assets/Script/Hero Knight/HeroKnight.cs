@@ -34,6 +34,9 @@ public class HeroKnight : MonoBehaviour
     private bool m_takeDamage = false;
     private bool m_isHurt = false;
     private bool m_isPraying = false;
+    private bool m_isDead = false;
+    private bool m_dying = false;
+    private bool m_attacking = false;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -42,12 +45,15 @@ public class HeroKnight : MonoBehaviour
     private float m_rollCurrentTime;
 
     private float m_yPosBeforeRoll;
+
+    [SerializeField]
+    private BoolEventSO hurtEvent;
     
     [SerializeField] 
-    private BoolEventSO hurtEvent;
+    private BoolEventSO deathEvent;
 
     public BoolEventSO HurtEvent
-    {
+    { 
         get => hurtEvent;
         set => hurtEvent = value;
     }
@@ -55,6 +61,13 @@ public class HeroKnight : MonoBehaviour
     private void Awake()
     {
         hurtEvent.PropertyChanged += HurtEventOnPropertyChanged;
+        deathEvent.PropertyChanged += DeathEventOnPropertyChanged;
+    }
+
+    private void DeathEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_isDead = s.Value;
     }
 
     private void HurtEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -79,6 +92,10 @@ public class HeroKnight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_dying)
+            return;
+        
+        
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -126,10 +143,12 @@ public class HeroKnight : MonoBehaviour
         }
 
         // Move
-        if (!m_rolling && !m_isHurt)
+        if (!m_rolling && !m_isHurt && !m_attacking)
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         else if (m_isHurt)
             m_body2d.velocity = new Vector2(-m_facingDirection * m_speed * 2, m_body2d.velocity.y);
+        else if(m_attacking)
+            m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
         else if (m_rolling)
         {
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce * m_speed, m_body2d.velocity.y);
@@ -146,10 +165,11 @@ public class HeroKnight : MonoBehaviour
         m_animator.SetBool("WallSlide", m_isWallSliding);
 
         //Death
-        if (Input.GetKeyDown("e") && !m_rolling)
+        if (m_isDead)
         {
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
+            m_dying = true;
         }
         
         //Pray
@@ -168,15 +188,13 @@ public class HeroKnight : MonoBehaviour
         {
             m_animator.SetTrigger("Hurt");
             m_isHurt = true;
-            m_body2d.velocity = new Vector2(-m_facingDirection * m_speed * 2, m_body2d.velocity.y);
         }
-            
-
+        
         //Attack
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_currentAttack++;
-
+            m_attacking = true;
             // Loop back to one after third attack
             if (m_currentAttack > 3)
                 m_currentAttack = 1;
@@ -192,18 +210,19 @@ public class HeroKnight : MonoBehaviour
             m_timeSinceAttack = 0.0f;
         }
 
+        // Useless for the moment maybe it'll be developed later
         // Block
-        else if (Input.GetMouseButtonDown(1) && !m_rolling)
-        {
-            m_animator.SetTrigger("Block");
-            m_animator.SetBool("IdleBlock", true);
-        }
-
-        else if (Input.GetMouseButtonUp(1))
-            m_animator.SetBool("IdleBlock", false);
+        // else if (Input.GetMouseButtonDown(1) && !m_rolling)
+        // {
+        //     m_animator.SetTrigger("Block");
+        //     m_animator.SetBool("IdleBlock", true);
+        // }
+        //
+        // else if (Input.GetMouseButtonUp(1))
+        //     m_animator.SetBool("IdleBlock", false);
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded)
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded && !m_attacking && !m_isHurt && !m_isPraying)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
@@ -237,11 +256,29 @@ public class HeroKnight : MonoBehaviour
                 m_animator.SetInteger("AnimState", 0);
         }
     }
+
+    public void EndAttacking()
+    {
+        m_attacking = false;
+    }
+
+    public void EndRolling()
+    {
+        m_rolling = false;
+    }
     
     public void EndHurting()
     {
-        hurtEvent.Value = false;
         m_isHurt = false;
+        hurtEvent.Value = false;
+    }
+
+    public void EndDeath()
+    {
+        deathEvent.Value = false;
+        m_isDead = false;
+        m_dying = false;
+        //ToDo: Faire le respawn
     }
 
     // Animation Events

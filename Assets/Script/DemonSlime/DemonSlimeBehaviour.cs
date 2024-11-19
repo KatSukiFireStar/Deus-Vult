@@ -154,13 +154,18 @@ public class DemonSlimeBehaviour : MonoBehaviour
         else if (inputX < 0)
         {
             m_spriteRenderer.flipX = false;
-            for (int i = 3; i < transform.childCount; i++)
+            for (int i = 2; i < transform.childCount; i++)
                 transform.GetChild(i).localScale = new(1, 1, 1);
         }
         
         // Move
-        m_body2d.velocity = new Vector2(inputX * m_speed, 0);
-        
+        if (!m_isHurt)
+            m_body2d.velocity = new Vector2(inputX * m_speed, 0);
+        else if(m_isAttacking)
+            m_body2d.velocity = new Vector2(0, 0);
+        else if (m_isHurt)
+            m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+            
         //If the slime isn't transformed we stop it
         //The 1st phase can only walk from two point and take damage
         if (!m_transform)
@@ -172,7 +177,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
                 m_animator.SetTrigger("Hit");
                 inputX = 0;
                 m_isHurt = true;
-                m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
+                
             }
             //Move Anim
             else if (Mathf.Abs(inputX) > Mathf.Epsilon)
@@ -202,7 +207,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
                 {
                    m_numAttack = Random.Range(0, 4);
 
-                   if (m_numAttack == 3 && inputX > 0)
+                   if (m_numAttack == 3 && saveInputX > 0)
                    {
                        m_numAttack = 2;
                    }
