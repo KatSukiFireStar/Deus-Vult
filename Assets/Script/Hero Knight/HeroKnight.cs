@@ -46,11 +46,15 @@ public class HeroKnight : MonoBehaviour
 
     private float m_yPosBeforeRoll;
 
+    [Header("Events")]
     [SerializeField]
     private BoolEventSO hurtEvent;
     
     [SerializeField] 
     private BoolEventSO deathEvent;
+    
+    [SerializeField] 
+    private BoolEventSO respawnEvent;
 
     public BoolEventSO HurtEvent
     { 
@@ -170,6 +174,7 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
             m_dying = true;
+            m_body2d.velocity = new Vector2(0, 0);
         }
         
         //Pray
@@ -278,7 +283,7 @@ public class HeroKnight : MonoBehaviour
         deathEvent.Value = false;
         m_isDead = false;
         m_dying = false;
-        //ToDo: Faire le respawn
+        respawnEvent.Value = true;
     }
 
     // Animation Events
