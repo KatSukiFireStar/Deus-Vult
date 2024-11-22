@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+  respawnTrigger: {fileID: 11400000, guid: 535d6572a475755488fb2dbaa9ccccfa, type: 2}

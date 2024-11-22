@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2090642674025853698}
   m_Layer: 6
   m_Name: GroundSensor
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,7 +485,8 @@ MonoBehaviour:
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
   hurtEvent: {fileID: 11400000, guid: b7571a979f58037448e4d5b988f310d2, type: 2}
   deathEvent: {fileID: 11400000, guid: 46844819eed0ae74c9710c3648b16a83, type: 2}
-  respawnEvent: {fileID: 0}
+  respawnEvent: {fileID: 11400000, guid: ee5fe5017a58ca842b6da32a0b4791b2, type: 2}
+  fadeEvent: {fileID: 11400000, guid: 21e13a16acbda9a4fa356d08a94b3c3a, type: 2}
 --- !u!114 &695718212448736047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +506,7 @@ MonoBehaviour:
   hurtingEvent: {fileID: 11400000, guid: b7571a979f58037448e4d5b988f310d2, type: 2}
   _maxLifeEvent: {fileID: 11400000, guid: a4263e9874823db4dbef41930bf9055b, type: 2}
   deathEvent: {fileID: 11400000, guid: 46844819eed0ae74c9710c3648b16a83, type: 2}
+  respawnEvent: {fileID: 11400000, guid: ee5fe5017a58ca842b6da32a0b4791b2, type: 2}
 --- !u!114 &615377634750578324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnEvent: {fileID: 11400000, guid: 687bcd56d7e02084991293e3cedc706b, type: 2}
   respawnBoolEvent: {fileID: 11400000, guid: ee5fe5017a58ca842b6da32a0b4791b2, type: 2}
+  fadeEvent: {fileID: 11400000, guid: 21e13a16acbda9a4fa356d08a94b3c3a, type: 2}
 --- !u!114 &3836970338421905413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +929,7 @@ GameObject:
   - component: {fileID: 2724002377843051195}
   m_Layer: 6
   m_Name: WallSensor_R2
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1006,7 +1009,7 @@ GameObject:
   - component: {fileID: 7644162722278263769}
   m_Layer: 6
   m_Name: WallSensor_L2
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1089,7 @@ GameObject:
   - component: {fileID: 1168810063073467675}
   m_Layer: 6
   m_Name: ColliderAttack
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1255,7 +1258,7 @@ GameObject:
   - component: {fileID: 6669830795856673493}
   m_Layer: 6
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1405,7 +1408,7 @@ GameObject:
   - component: {fileID: 4862588835780617305}
   m_Layer: 6
   m_Name: WallSensor_R1
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1485,7 +1488,7 @@ GameObject:
   - component: {fileID: 2193030436431168656}
   m_Layer: 6
   m_Name: WallSensor_L1
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

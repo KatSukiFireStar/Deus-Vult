@@ -55,6 +55,9 @@ public class HeroKnight : MonoBehaviour
     
     [SerializeField] 
     private BoolEventSO respawnEvent;
+    
+    [SerializeField] 
+    private BoolEventSO fadeEvent;
 
     public BoolEventSO HurtEvent
     { 
@@ -66,6 +69,14 @@ public class HeroKnight : MonoBehaviour
     {
         hurtEvent.PropertyChanged += HurtEventOnPropertyChanged;
         deathEvent.PropertyChanged += DeathEventOnPropertyChanged;
+        fadeEvent.PropertyChanged += FadeEventOnPropertyChanged;
+    }
+
+    private void FadeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        if (s.Value)
+            m_animator.SetTrigger("Idle");
     }
 
     private void DeathEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -171,6 +182,7 @@ public class HeroKnight : MonoBehaviour
         //Death
         if (m_isDead)
         {
+            EndHurting();
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
             m_dying = true;
@@ -283,6 +295,10 @@ public class HeroKnight : MonoBehaviour
         deathEvent.Value = false;
         m_isDead = false;
         m_dying = false;
+    }
+
+    public void StartRespawn()
+    {
         respawnEvent.Value = true;
     }
 

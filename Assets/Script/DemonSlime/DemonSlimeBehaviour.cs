@@ -58,12 +58,6 @@ public class DemonSlimeBehaviour : MonoBehaviour
         startEventSO.PropertyChanged += StartEventSOOnPropertyChanged;
 
         m_lastAttack = deltaAttack;
-        
-        //ToDo: Remove the next line
-        m_start = true;
-        inputX = -1;
-        saveInputX = inputX;
-        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -109,6 +103,12 @@ public class DemonSlimeBehaviour : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        //ToDo: Remove the next line
+        m_start = true;
+        inputX = -1;
+        saveInputX = inputX;
+        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()

@@ -46,7 +46,7 @@ public class ChangeScene : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
 		{
 			here = true;
 			Debug.Log("Je change de scene pour scene: " + sceneName);
@@ -66,5 +66,6 @@ public class ChangeScene : MonoBehaviour
 		bound.MaxX = maxXBoundary;
 		bound.MinX = minXBoundary;
 		animator.SetTrigger("FadeOut");
+		here = false;
 	}
 }

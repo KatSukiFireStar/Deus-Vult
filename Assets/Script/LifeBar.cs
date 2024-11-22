@@ -30,8 +30,13 @@ public class LifeBar : MonoBehaviour
 
 	public void AddSuscribe()
 	{
-		if(life != null)
+		if (life != null)
 			life.PropertyChanged += LifeOnPropertyChanged;
+	}
+
+	private void Start()
+	{
+		life.Value = life.Value;
 	}
 
 	private void LifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
