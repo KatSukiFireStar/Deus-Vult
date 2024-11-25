@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using EventSystem.SO;
 
@@ -37,6 +38,9 @@ public class HeroKnight : MonoBehaviour
     private bool m_isDead = false;
     private bool m_dying = false;
     private bool m_attacking = false;
+    private bool m_pray = false;
+    private bool m_endPray = false;
+    private bool m_canMove = true;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -45,6 +49,8 @@ public class HeroKnight : MonoBehaviour
     private float m_rollCurrentTime;
 
     private float m_yPosBeforeRoll;
+    
+    private List<KeyCode> m_inputs = new();
 
     [Header("Events")]
     [SerializeField]
@@ -59,6 +65,9 @@ public class HeroKnight : MonoBehaviour
     [SerializeField] 
     private BoolEventSO fadeEvent;
 
+    [SerializeField]
+    private BoolEventSO prayEvent;
+
     public BoolEventSO HurtEvent
     { 
         get => hurtEvent;
@@ -70,6 +79,21 @@ public class HeroKnight : MonoBehaviour
         hurtEvent.PropertyChanged += HurtEventOnPropertyChanged;
         deathEvent.PropertyChanged += DeathEventOnPropertyChanged;
         fadeEvent.PropertyChanged += FadeEventOnPropertyChanged;
+        prayEvent.PropertyChanged += PrayEventOnPropertyChanged;
+        
+        m_inputs.Add(KeyCode.A);
+        m_inputs.Add(KeyCode.D);
+        m_inputs.Add(KeyCode.W);
+        m_inputs.Add(KeyCode.S);
+        m_inputs.Add(KeyCode.Space);
+        m_inputs.Add(KeyCode.Z);
+        m_inputs.Add(KeyCode.Q);
+    }
+
+    private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_pray = s.Value;
     }
 
     private void FadeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -107,7 +131,26 @@ public class HeroKnight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_dying)
+        if (m_pray && m_isPraying && m_endPray)
+        {
+            bool goOut = false;
+            foreach (KeyCode key in m_inputs)
+            {
+                if (Input.GetKey(key))
+                {
+                    goOut = true;
+                }
+            }
+
+            if (!goOut)
+                return;
+            m_animator.SetTrigger("EndPray");
+            m_isPraying = false;
+            m_endPray = false;
+            prayEvent.Value = false;
+        }
+        
+        if (m_dying || !m_canMove)
             return;
         
         
@@ -190,14 +233,12 @@ public class HeroKnight : MonoBehaviour
         }
         
         //Pray
-        else if (Input.GetKeyDown(KeyCode.P) && !m_isPraying)
+        else if (m_pray && !m_isPraying && m_grounded)
         {
             m_animator.SetTrigger("Pray");
             m_isPraying = true;
-        }else if (Input.GetKeyDown(KeyCode.P) && m_isPraying)
-        {
-            m_animator.SetTrigger("EndPray");
-            m_isPraying = false;
+            m_canMove = false;
+            m_body2d.velocity = new Vector2(0, 0);
         }
 
         //Hurt
@@ -295,6 +336,16 @@ public class HeroKnight : MonoBehaviour
         deathEvent.Value = false;
         m_isDead = false;
         m_dying = false;
+    }
+
+    public void EndPray()
+    {
+        m_endPray = true;
+    }
+
+    public void RestartMove()
+    {
+        m_canMove = true;
     }
 
     public void StartRespawn()
