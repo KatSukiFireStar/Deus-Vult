@@ -35,6 +35,8 @@ public class PlayerLife : MonoBehaviour
 
 	private void Awake()
 	{
+		playerLife.Value = 200;
+		_maxLifeEvent.Value = 200;
 		damageEvent.PropertyChanged += DamageEventOnPropertyChanged;
 		blockingEvent.PropertyChanged += BlockingEventOnPropertyChanged;
 		playerLife.PropertyChanged += PlayerLifeOnPropertyChanged;
@@ -63,8 +65,7 @@ public class PlayerLife : MonoBehaviour
 
 	private void Start()
 	{
-		playerLife.Value = 200;
-		_maxLifeEvent.Value = 200;
+		
 	}
 
 	private void PlayerLifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)

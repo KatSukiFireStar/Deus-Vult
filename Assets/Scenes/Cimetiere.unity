@@ -20259,6 +20259,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 466342596}
     m_Modifications:
+    - target: {fileID: 7154075322710028883, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
+      propertyPath: respawnTrigger
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c6c3fb773679074f94989fc96333fef, type: 2}
     - target: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Statue
