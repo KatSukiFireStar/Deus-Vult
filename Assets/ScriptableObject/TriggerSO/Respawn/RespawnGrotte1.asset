@@ -15,6 +15,6 @@ MonoBehaviour:
   events: {fileID: 11400000, guid: 687bcd56d7e02084991293e3cedc706b, type: 2}
   modifier:
     sceneName: Grotte
-    respawnPosition: {x: -51, y: 47}
+    respawnPosition: {x: -4, y: 1}
     minXBoundary: -80
     maxXBoundary: 125

@@ -94,4 +94,4 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0}
   minXBoundary: 0
   maxXBoundary: 0
-  fadeEvent: {fileID: 11400000, guid: 21e13a16acbda9a4fa356d08a94b3c3a, type: 2}
+  fadeEvent: {fileID: 11400000, guid: eb8b478a6c79cbe4fae6019b2774ffd6, type: 2}

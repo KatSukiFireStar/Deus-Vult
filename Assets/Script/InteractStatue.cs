@@ -20,6 +20,7 @@ public class InteractStatue : MonoBehaviour
 		if ((other.CompareTag("Player") || other.CompareTag("PlayerCollider")) && Input.GetKeyDown(KeyCode.E) && !prayEvent.Value)
 		{
 			prayEvent.Value = true;
+			respawnTrigger.Trigger();
 		}
 	}
 }

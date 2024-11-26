@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f0d63a646290d540abf3160e5185e5c, type: 3}
-  m_Name: RespawnGrotte2
+  m_Name: ChangeSceneVillage 1
   m_EditorClassIdentifier: 
-  events: {fileID: 11400000, guid: 687bcd56d7e02084991293e3cedc706b, type: 2}
+  events: {fileID: 11400000, guid: 61304fe2fb060d847949275713b6ee24, type: 2}
   modifier:
-    sceneName: Grotte
-    respawnPosition: {x: 44, y: -49}
-    minXBoundary: -80
-    maxXBoundary: 125
+    sceneName: VillageScene
+    respawnPosition: {x: -20, y: -2.5}
+    minXBoundary: -16
+    maxXBoundary: 16

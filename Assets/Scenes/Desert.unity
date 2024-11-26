@@ -8789,6 +8789,10 @@ PrefabInstance:
       propertyPath: playerPosition.y
       value: -2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 6217273774419590632, guid: 862ec8a6ff73bf2459d5793750d11533, type: 3}
+      propertyPath: changeSceneTrigger
+      value: 
+      objectReference: {fileID: 11400000, guid: a7c102f96a839774f804746ead7bddf2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9010,6 +9014,10 @@ PrefabInstance:
       propertyPath: playerPosition.y
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6217273774419590632, guid: 862ec8a6ff73bf2459d5793750d11533, type: 3}
+      propertyPath: changeSceneTrigger
+      value: 
+      objectReference: {fileID: 11400000, guid: 57d66ab03135415499c923d3d69090f1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
