@@ -10,17 +10,35 @@ public class InteractStatue : MonoBehaviour
 	[SerializeField] 
 	private BoolEventSO prayEvent;
 
+	
+	private bool canPray = false;
+	
 	private void Awake()
 	{
 		prayEvent.Value = false;
 	}
 
-	private void OnTriggerStay2D(Collider2D other)
+	private void Update()
 	{
-		if ((other.CompareTag("Player") || other.CompareTag("PlayerCollider")) && Input.GetKeyDown(KeyCode.E) && !prayEvent.Value)
+		if(!canPray)
+			return;
+		
+		if (Input.GetKeyDown(KeyCode.E) && !prayEvent.Value)
 		{
 			prayEvent.Value = true;
 			respawnTrigger.Trigger();
 		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+			canPray = true;
+	}
+
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if(other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+			canPray = false;
 	}
 }
