@@ -32,13 +32,21 @@ public class InteractStatue : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		{
 			canPray = true;
+			transform.GetChild(1).gameObject.SetActive(true);
+		}
+			
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if(other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		{
 			canPray = false;
+			transform.GetChild(1).gameObject.SetActive(false);
+		}
+			
 	}
 }
