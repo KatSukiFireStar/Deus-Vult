@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 3.3875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,8 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166450a7615d1094cbc676f46f714065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
-  playerPosition: {x: 0, y: 0}
-  minXBoundary: 0
-  maxXBoundary: 0
-  fadeEvent: {fileID: 11400000, guid: eb8b478a6c79cbe4fae6019b2774ffd6, type: 2}
+  changeSceneTrigger: {fileID: 0}
