@@ -568,6 +568,7 @@ MonoBehaviour:
   fadeEvent: {fileID: 11400000, guid: 21e13a16acbda9a4fa356d08a94b3c3a, type: 2}
   prayEvent: {fileID: 11400000, guid: 447053e39b5f7634b91dd86f5f063907, type: 2}
   bootPickupEvent: {fileID: 11400000, guid: 1eaa9fedf533443488e4ce3ad92e9652, type: 2}
+  groundedEvent: {fileID: 11400000, guid: c155db9643844c048aa89d793e7234e2, type: 2}
 --- !u!114 &695718212448736047
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -73,6 +73,9 @@ public class HeroKnight : MonoBehaviour
     [SerializeField] 
     private BoolEventSO bootPickupEvent;
     
+    [SerializeField]
+    private BoolEventSO groundedEvent;
+    
     public BoolEventSO HurtEvent
     { 
         get => hurtEvent;
@@ -180,7 +183,7 @@ public class HeroKnight : MonoBehaviour
         }
 
         //Check if character just landed on the ground
-        if (!m_grounded && m_groundSensor.State())
+        if ((!m_grounded && m_groundSensor.State()) || groundedEvent.Value)
         {
             m_grounded = true;
             m_secondJump = false;
@@ -188,7 +191,7 @@ public class HeroKnight : MonoBehaviour
         }
 
         //Check if character just started falling
-        if (m_grounded && !m_groundSensor.State())
+        if (m_grounded && !m_groundSensor.State() && !groundedEvent.Value)
         {
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
@@ -307,6 +310,7 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetBool("Grounded", m_grounded);
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
+            groundedEvent.Value = false;
         }
         
         
