@@ -220,7 +220,7 @@ public class HeroKnight : MonoBehaviour
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         else if (m_isHurt)
             m_body2d.velocity = new Vector2(-m_facingDirection * m_speed * 2, m_body2d.velocity.y);
-        else if(m_attacking)
+        else if(m_attacking && m_grounded)
             m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
         else if (m_rolling)
         {
@@ -263,6 +263,14 @@ public class HeroKnight : MonoBehaviour
             m_isHurt = true;
         }
         
+        // Roll
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded && !m_attacking && !m_isHurt && !m_isPraying)
+        {
+            m_rolling = true;
+            m_animator.SetTrigger("Roll");
+            m_yPosBeforeRoll = transform.position.y;
+        }
+        
         //Attack
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
@@ -293,15 +301,7 @@ public class HeroKnight : MonoBehaviour
         //
         // else if (Input.GetMouseButtonUp(1))
         //     m_animator.SetBool("IdleBlock", false);
-
-        // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded && !m_attacking && !m_isHurt && !m_isPraying)
-        {
-            m_rolling = true;
-            m_animator.SetTrigger("Roll");
-            m_yPosBeforeRoll = transform.position.y;
-        }
-
+        
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
         {
