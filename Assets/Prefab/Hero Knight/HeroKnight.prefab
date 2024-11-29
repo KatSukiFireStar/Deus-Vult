@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneEvent: {fileID: 11400000, guid: 61304fe2fb060d847949275713b6ee24, type: 2}
-  fadeEvent: {fileID: 0}
+  fadeEvent: {fileID: 11400000, guid: 21e13a16acbda9a4fa356d08a94b3c3a, type: 2}
 --- !u!1 &892035766206799023
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +589,7 @@ MonoBehaviour:
   _maxLifeEvent: {fileID: 11400000, guid: a4263e9874823db4dbef41930bf9055b, type: 2}
   deathEvent: {fileID: 11400000, guid: 46844819eed0ae74c9710c3648b16a83, type: 2}
   respawnEvent: {fileID: 11400000, guid: ee5fe5017a58ca842b6da32a0b4791b2, type: 2}
+  prayEvent: {fileID: 11400000, guid: 447053e39b5f7634b91dd86f5f063907, type: 2}
 --- !u!114 &615377634750578324
 MonoBehaviour:
   m_ObjectHideFlags: 0
