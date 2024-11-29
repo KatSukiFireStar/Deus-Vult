@@ -41,6 +41,8 @@ public class HeroKnight : MonoBehaviour
     private bool m_pray = false;
     private bool m_endPray = false;
     private bool m_canMove = true;
+    private bool m_secondJump = false;
+    private bool m_hasBoots = false;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -49,9 +51,9 @@ public class HeroKnight : MonoBehaviour
     private float m_rollCurrentTime;
 
     private float m_yPosBeforeRoll;
-    
-    private List<KeyCode> m_inputs = new();
 
+    private List<KeyCode> m_inputs = new();
+    
     [Header("Events")]
     [SerializeField]
     private BoolEventSO hurtEvent;
@@ -68,6 +70,9 @@ public class HeroKnight : MonoBehaviour
     [SerializeField]
     private BoolEventSO prayEvent;
 
+    [SerializeField] 
+    private BoolEventSO bootPickupEvent;
+    
     public BoolEventSO HurtEvent
     { 
         get => hurtEvent;
@@ -80,6 +85,7 @@ public class HeroKnight : MonoBehaviour
         deathEvent.PropertyChanged += DeathEventOnPropertyChanged;
         fadeEvent.PropertyChanged += FadeEventOnPropertyChanged;
         prayEvent.PropertyChanged += PrayEventOnPropertyChanged;
+        bootPickupEvent.PropertyChanged += BootPickupEventOnPropertyChanged;
         
         m_inputs.Add(KeyCode.A);
         m_inputs.Add(KeyCode.D);
@@ -115,6 +121,11 @@ public class HeroKnight : MonoBehaviour
         m_takeDamage = s.Value;
     }
 
+    private void BootPickupEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_hasBoots = s.Value;
+    }
 
     // Use this for initialization
     void Start()
@@ -172,6 +183,7 @@ public class HeroKnight : MonoBehaviour
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
+            m_secondJump = false;
             m_animator.SetBool("Grounded", m_grounded);
         }
 
@@ -296,6 +308,15 @@ public class HeroKnight : MonoBehaviour
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
         }
+        
+        
+        //Second jump if possible
+        else if (Input.GetKeyDown("space") && !m_grounded && !m_rolling && m_hasBoots && !m_secondJump) // If we have boots and haven't performed a second jump yet
+        {
+            m_secondJump = true;
+            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+        }
+        
 
         //Run
         else if (Mathf.Abs(inputX) > Mathf.Epsilon)
