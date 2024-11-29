@@ -44,7 +44,7 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
-		transform.GetChild(0).gameObject.SetActive(false);
+		// transform.GetChild(0).gameObject.SetActive(false);
 		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
 	}
 

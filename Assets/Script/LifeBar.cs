@@ -26,6 +26,7 @@ public class LifeBar : MonoBehaviour
 	private void Awake()
 	{
 		AddSuscribe();
+		life.Value = (int)lifePoint;
 	}
 
 	public void AddSuscribe()
@@ -34,9 +35,14 @@ public class LifeBar : MonoBehaviour
 			life.PropertyChanged += LifeOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		if (life != null)
+			life.PropertyChanged -= LifeOnPropertyChanged;
+	}
+
 	private void Start()
 	{
-		life.Value = life.Value;
 	}
 
 	private void LifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
