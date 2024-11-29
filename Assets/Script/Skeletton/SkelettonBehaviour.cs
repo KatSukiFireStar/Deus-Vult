@@ -25,6 +25,7 @@ public class SkelettonBehaviour : MonoBehaviour
     private bool m_dying = false;
     private float _targetX = 0;
     private bool _moveTowards = false;
+    private GameObject m_player;
     
     [SerializeField]
     private int minX;
@@ -62,6 +63,7 @@ public class SkelettonBehaviour : MonoBehaviour
         m_grounded = true;
         m_animator.SetBool("Grounded", m_grounded);
         saveInputX = inputX;
+        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void AddSuscribe()
@@ -92,19 +94,37 @@ public class SkelettonBehaviour : MonoBehaviour
         if (m_dying)
             return;
         
+        if (!m_isHurt && !m_isAttacking && m_player.transform.position.x < transform.position.x && _moveTowards)
+        {
+            inputX = -1;
+        }
+        else if (!m_isHurt && !m_isAttacking && m_player.transform.position.x > transform.position.x && _moveTowards)
+        {
+            inputX = 1;
+        }
+        if(inputX != 0)
+            saveInputX = inputX;
+    
+        
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
             m_spriteRenderer.flipX = false;
             transform.GetChild(1).localScale = new(-1, 1, 1);
+            m_animator.SetInteger("AnimState", 1);
         }
         else if (inputX < 0)
         {
             m_spriteRenderer.flipX = true;
             transform.GetChild(1).localScale = new(1, 1, 1);
+            m_animator.SetInteger("AnimState", 1);
+        }
+        else
+        {
+            m_animator.SetInteger("AnimState", 0);
         }
         
-        if (((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0)) && !_moveTowards)
+        if (((m_body2d.position.x <= minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0)) && !_moveTowards)
         {
             inputX *= -1; 
             if(inputX != 0)
@@ -132,6 +152,7 @@ public class SkelettonBehaviour : MonoBehaviour
                 {
                     attackb = true; // We're close enough to attack
                     _moveTowards = false;
+                    _targetX = hit.transform.position.x;
                 }
                 else if (hit.distance < 20f) 
                 {
@@ -140,6 +161,11 @@ public class SkelettonBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    if (_moveTowards = true)
+                    {
+                        maxX = (int)transform.position.x + 10;
+                        minX = (int)transform.position.x - 10;
+                    }
                     _moveTowards = false;
                 }
             }
@@ -153,23 +179,11 @@ public class SkelettonBehaviour : MonoBehaviour
             m_dying = true;
         }
         // Hurting
-        else if (m_takeDamage && !m_isHurt) 
+        else if (m_takeDamage && !m_isHurt)
         {
             m_animator.SetTrigger("Hit");
             m_isHurt = true;
             m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
-        }
-        // We chase the player
-        else if (_moveTowards && !m_isAttacking && !m_isHurt) 
-        {
-            if (transform.position.x - _targetX > 0)
-            {
-                inputX = -1;
-            }
-            else
-            {
-                inputX = 1;
-            }
         }
         // Attacking player (we alternate between two possible attacks
         else if (attackb && !m_isAttacking)
