@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Grotte.unity
     guid: ed17fa99565ca6746b9979e962477cf0
+  - enabled: 1
+    path: Assets/Scenes/Castle.unity
+    guid: 018ad5234c078ff4295a07f08cf6cb70
   m_configObjects: {}
