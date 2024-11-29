@@ -106,7 +106,7 @@ public class SkelettonBehaviour : MonoBehaviour
         
         if (((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0)) && !_moveTowards)
         {
-            inputX *= -1;
+            inputX *= -1; 
             if(inputX != 0)
                 saveInputX = inputX;
         }
@@ -151,12 +151,16 @@ public class SkelettonBehaviour : MonoBehaviour
             m_animator.SetTrigger("Death");
             m_body2d.velocity = new Vector2(0, 0);
             m_dying = true;
-        }else if (m_takeDamage && !m_isHurt) // Hurting
+        }
+        // Hurting
+        else if (m_takeDamage && !m_isHurt) 
         {
             m_animator.SetTrigger("Hit");
             m_isHurt = true;
             m_body2d.velocity = new Vector2(-saveInputX * m_speed, 0);
-        }else if (_moveTowards && !m_isAttacking && !m_isHurt) // We chase the player
+        }
+        // We chase the player
+        else if (_moveTowards && !m_isAttacking && !m_isHurt) 
         {
             if (transform.position.x - _targetX > 0)
             {
@@ -166,7 +170,9 @@ public class SkelettonBehaviour : MonoBehaviour
             {
                 inputX = 1;
             }
-        }else if (attackb && !m_isAttacking)
+        }
+        // Attacking player (we alternate between two possible attacks
+        else if (attackb && !m_isAttacking)
         {
             inputX = 0;
             if (m_attackA)
@@ -188,8 +194,10 @@ public class SkelettonBehaviour : MonoBehaviour
     public void EndAttacking()
     {
         m_isAttacking = false;
+        m_attackA = false;
+        inputX = saveInputX;
     }
-
+    
     public void EndHurting()
     {
         EndAttacking();
