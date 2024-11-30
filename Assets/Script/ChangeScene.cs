@@ -21,8 +21,8 @@ public class ChangeScene : MonoBehaviour
 		if (other.CompareTag("PlayerCollider"))
 		{
 			Debug.Log("Je change de scene pour scene: " + changeSceneTrigger.modifier.sceneName);
-			changeSceneTrigger.Trigger();
 			animator.SetTrigger("FadeOut");
+			changeSceneTrigger.Trigger();
 		}
 		
 	}

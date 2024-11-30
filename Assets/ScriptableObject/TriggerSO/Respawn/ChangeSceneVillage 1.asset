@@ -15,6 +15,6 @@ MonoBehaviour:
   events: {fileID: 11400000, guid: 61304fe2fb060d847949275713b6ee24, type: 2}
   modifier:
     sceneName: VillageScene
-    respawnPosition: {x: -20, y: -2.5}
+    respawnPosition: {x: 22, y: -2.5}
     minXBoundary: -16
     maxXBoundary: 16

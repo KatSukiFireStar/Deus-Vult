@@ -29,6 +29,9 @@ public class PlayerLife : MonoBehaviour
 	
 	[SerializeField] 
 	private BoolEventSO respawnEvent;
+	
+	[SerializeField] 
+	private BoolEventSO prayEvent;
 
 	private bool blocking = false;
 	private bool rolling = false;
@@ -42,6 +45,16 @@ public class PlayerLife : MonoBehaviour
 		playerLife.PropertyChanged += PlayerLifeOnPropertyChanged;
 		_healingEvent.PropertyChanged += HealingEventOnPropertyChanged;
 		respawnEvent.PropertyChanged += RespawnEventOnPropertyChanged;
+		prayEvent.PropertyChanged += PrayEventOnPropertyChanged;
+	}
+
+	private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+	{
+		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+		if (s.Value)
+		{
+			playerLife.Value = _maxLifeEvent.Value;
+		}
 	}
 
 	private void RespawnEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
