@@ -161,7 +161,7 @@ public class SkelettonBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if (_moveTowards = true)
+                    if (_moveTowards)
                     {
                         maxX = (int)transform.position.x + 10;
                         minX = (int)transform.position.x - 10;
