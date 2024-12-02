@@ -8,17 +8,17 @@ public class SetGroundedForStair : MonoBehaviour
 	[SerializeField]
 	private BoolEventSO groundedEvent;
 	
-	private void OnTriggerEnter2D(Collider2D other)
+	private void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerCollider"))
 		{
 			groundedEvent.Value = true;
 		}
 	}
 	
-	private void OnTriggerExit2D(Collider2D other)
+	private void OnCollisionExit2D(Collision2D other)
 	{
-		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerCollider"))
 		{
 			groundedEvent.Value = false;
 		}
