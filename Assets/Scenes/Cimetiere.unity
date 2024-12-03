@@ -2800,7 +2800,7 @@ PrefabInstance:
     - target: {fileID: 6217273774419590632, guid: 862ec8a6ff73bf2459d5793750d11533, type: 3}
       propertyPath: changeSceneTrigger
       value: 
-      objectReference: {fileID: 11400000, guid: a7c102f96a839774f804746ead7bddf2, type: 2}
+      objectReference: {fileID: 11400000, guid: 891ef73e89fe2e24f86845f7ddf0b92d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

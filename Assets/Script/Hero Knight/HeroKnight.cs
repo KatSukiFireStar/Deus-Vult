@@ -109,7 +109,13 @@ public class HeroKnight : MonoBehaviour
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
         if (s.Value)
+        {
             m_animator.SetTrigger("Idle");
+            EndAttacking();
+            EndHurting();
+            EndRolling();
+        }
+            
     }
 
     private void DeathEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)

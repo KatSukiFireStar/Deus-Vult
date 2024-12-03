@@ -107,13 +107,13 @@ public class SkelettonBehaviour : MonoBehaviour
         if (inputX > 0)
         {
             m_spriteRenderer.flipX = false;
-            transform.GetChild(1).localScale = new(-1, 1, 1);
+            transform.GetChild(1).localScale = new(1, 1, 1);
             m_animator.SetInteger("AnimState", 1);
         }
         else if (inputX < 0)
         {
             m_spriteRenderer.flipX = true;
-            transform.GetChild(1).localScale = new(1, 1, 1);
+            transform.GetChild(1).localScale = new(-1, 1, 1);
             m_animator.SetInteger("AnimState", 1);
         }
         else
@@ -145,7 +145,7 @@ public class SkelettonBehaviour : MonoBehaviour
             if (hit.collider != null)
             {
                 hitb = true;
-                if (hit.distance < 1f)
+                if (hit.distance < 0.5f)
                 {
                     attackb = true; // We're close enough to attack
                     _moveTowards = false;
