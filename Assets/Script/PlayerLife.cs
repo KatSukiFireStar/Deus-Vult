@@ -49,6 +49,17 @@ public class PlayerLife : MonoBehaviour
 		_maxLifeEvent.PropertyChanged += MaxLifeEventOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		damageEvent.PropertyChanged -= DamageEventOnPropertyChanged;
+		blockingEvent.PropertyChanged -= BlockingEventOnPropertyChanged;
+		playerLife.PropertyChanged -= PlayerLifeOnPropertyChanged;
+		_healingEvent.PropertyChanged -= HealingEventOnPropertyChanged;
+		respawnEvent.PropertyChanged -= RespawnEventOnPropertyChanged;
+		prayEvent.PropertyChanged -= PrayEventOnPropertyChanged;
+		_maxLifeEvent.PropertyChanged -= MaxLifeEventOnPropertyChanged;
+	}
+
 	private void MaxLifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;

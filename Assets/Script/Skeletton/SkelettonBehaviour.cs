@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using EventSystem.SO;
 using UnityEngine;
@@ -71,6 +72,12 @@ public class SkelettonBehaviour : MonoBehaviour
     public void AddSuscribeDead()
     {
         deadEvent.PropertyChanged += DeadEventOnPropertyChanged;
+    }
+
+    private void OnDestroy()
+    {
+        takeDamageEvent.PropertyChanged -= TakeDamageEventOnPropertyChanged;
+        deadEvent.PropertyChanged -= DeadEventOnPropertyChanged;
     }
 
     private void DeadEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)

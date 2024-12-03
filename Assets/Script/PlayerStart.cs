@@ -31,7 +31,6 @@ public class PlayerStart : MonoBehaviour
 			boolToReset.Value = new bool[4];
 			for (int i = 0; i < boolToReset.Value.Length; i++)
 			{
-				Debug.LogError("Salut " + i);
 				boolToReset.Value[i] = false;
 			}
 		}

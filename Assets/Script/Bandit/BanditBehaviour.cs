@@ -70,6 +70,12 @@ public class BanditBehaviour : MonoBehaviour
         deadEvent.PropertyChanged += DeadEventOnPropertyChanged;
     }
 
+    private void OnDestroy()
+    {
+        deadEvent.PropertyChanged -= DeadEventOnPropertyChanged;
+        takeDamageEvent.PropertyChanged -= TakeDamageEventOnPropertyChanged;
+    }
+
     private void DeadEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;

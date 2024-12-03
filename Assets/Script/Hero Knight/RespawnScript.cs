@@ -22,7 +22,12 @@ public class RespawnScript : MonoBehaviour
 		animator = gameObject.transform.GetComponentsInChildren<Animator>()[1];
 		respawnBoolEvent.PropertyChanged += RespawnBoolEventOnPropertyChanged;
 	}
-	
+
+	private void OnDestroy()
+	{
+		respawnBoolEvent.PropertyChanged -= RespawnBoolEventOnPropertyChanged;
+	}
+
 
 	private void RespawnBoolEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{

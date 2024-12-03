@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using EventSystem.SO;
 using UnityEngine;
@@ -42,10 +43,17 @@ public class LifeManagerDemonSlime : MonoBehaviour
 		lifeEvent.PropertyChanged += LifeEventOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		transformEventSO.PropertyChanged -= TransformEventSOOnPropertyChanged;
+		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
+		transformEventSO.Value = false;
+		//ToDo: Je crois que le probleme vient du faite que le transform est pas reset a false apres le respawn du joueur
+	}
+
 	private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		transform.GetChild(0).gameObject.SetActive(false);
-		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
 	}
 
 	public void ReSuscribeLife()
@@ -61,7 +69,9 @@ public class LifeManagerDemonSlime : MonoBehaviour
 		if (s.Value <= 0 && transformEventSO.Value)
 		{
 			deadEventSO.Value = true; 
+			lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
 			s.Value = 0;
+			lifeEvent.PropertyChanged += LifeEventOnPropertyChanged;
 		}else if (s.Value <= 0 && !transformEventSO.Value)
 		{
 			transformEventSO.Value = true;

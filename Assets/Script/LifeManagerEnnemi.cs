@@ -56,6 +56,11 @@ public class LifeManagerEnnemi : MonoBehaviour
 		lifeEvent.PropertyChanged += LifeEventOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
+	}
+
 	private void LifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;

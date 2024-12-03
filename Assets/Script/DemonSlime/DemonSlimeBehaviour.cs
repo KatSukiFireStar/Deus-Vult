@@ -60,6 +60,14 @@ public class DemonSlimeBehaviour : MonoBehaviour
         m_lastAttack = deltaAttack;
     }
 
+    private void OnDestroy()
+    {
+        takeDamageEventSO.PropertyChanged -= TakeDamageEventSOOnPropertyChanged;
+        deadEventSO.PropertyChanged -= DeadEventSOOnPropertyChanged;
+        transformEventSO.PropertyChanged -= TransformEventSOOnPropertyChanged;
+        startEventSO.PropertyChanged -= StartEventSOOnPropertyChanged;
+    }
+
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;

@@ -16,6 +16,11 @@ public class AddMaxLife : MonoBehaviour
 		amountToAddEvent.PropertyChanged += AmountToAddEventOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		amountToAddEvent.PropertyChanged -= AmountToAddEventOnPropertyChanged;
+	}
+
 	private void AmountToAddEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;

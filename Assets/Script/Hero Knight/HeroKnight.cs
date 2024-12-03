@@ -98,6 +98,15 @@ public class HeroKnight : MonoBehaviour
         m_inputs.Add(KeyCode.Q);
     }
 
+    private void OnDestroy()
+    {
+        hurtEvent.PropertyChanged -= HurtEventOnPropertyChanged;
+        deathEvent.PropertyChanged -= DeathEventOnPropertyChanged;
+        fadeEvent.PropertyChanged -= FadeEventOnPropertyChanged;
+        prayEvent.PropertyChanged -= PrayEventOnPropertyChanged;
+        bootPickupEvent.PropertyChanged -= BootPickupEventOnPropertyChanged;
+    }
+
     private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
@@ -113,6 +122,7 @@ public class HeroKnight : MonoBehaviour
             EndAttacking();
             EndHurting();
             EndRolling();
+            EndDeath();
         }
             
     }

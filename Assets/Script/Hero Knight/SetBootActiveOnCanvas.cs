@@ -14,6 +14,11 @@ public class SetBootActiveOnCanvas : MonoBehaviour
 		bootPickupEvent.PropertyChanged += BootPickupEventOnPropertyChanged;
 	}
 
+	private void OnDestroy()
+	{
+		bootPickupEvent.PropertyChanged -= BootPickupEventOnPropertyChanged;
+	}
+
 	private void BootPickupEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
 		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;

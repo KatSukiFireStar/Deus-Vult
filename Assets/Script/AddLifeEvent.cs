@@ -10,11 +10,13 @@ public class AddLifeEvent : MonoBehaviour
 	[SerializeField] 
 	private int life;
 
+	private IntEventSO eventSO;
+	
 	private void Awake()
 	{
 		lifeBar = GetComponent<LifeBar>();
 		lifeBar.LifePoint = life;
-		IntEventSO eventSO = ScriptableObject.CreateInstance<IntEventSO>();
+		eventSO = ScriptableObject.CreateInstance<IntEventSO>();
 		eventSO.name = "LifeBar " + transform.parent.parent.name;
 		eventSO.PropertyChanged += EventSOOnPropertyChanged;
 		eventSO.Value = life;
@@ -24,6 +26,11 @@ public class AddLifeEvent : MonoBehaviour
 		LifeManagerEnnemi lme = transform.parent.parent.GetComponent<LifeManagerEnnemi>();
 		lme.LifeEvent = eventSO;
 		lme.AddSuscribeLife();
+	}
+
+	private void OnDestroy()
+	{
+		eventSO.PropertyChanged -= EventSOOnPropertyChanged;
 	}
 
 	private void Start()
