@@ -43,6 +43,7 @@ public class HeroKnight : MonoBehaviour
     private bool m_canMove = true;
     private bool m_secondJump = false;
     private bool m_hasBoots = false;
+    private bool m_canRoll = false;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -194,6 +195,14 @@ public class HeroKnight : MonoBehaviour
             m_grounded = true;
             m_secondJump = false;
             m_animator.SetBool("Grounded", m_grounded);
+            if (groundedEvent.Value)
+            {
+                m_canRoll = false;
+            }
+            else
+            {
+                m_canRoll = true;
+            }
         }
 
         //Check if character just started falling
@@ -270,7 +279,7 @@ public class HeroKnight : MonoBehaviour
         }
         
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding && m_grounded && !m_attacking && !m_isHurt && !m_isPraying)
+        else if (Input.GetKeyDown("left shift") && m_canRoll && !m_rolling && !m_isWallSliding && m_grounded && !m_attacking && !m_isHurt && !m_isPraying)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
