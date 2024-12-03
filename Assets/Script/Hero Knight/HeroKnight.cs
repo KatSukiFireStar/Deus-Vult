@@ -268,6 +268,7 @@ public class HeroKnight : MonoBehaviour
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
+            m_body2d.excludeLayers |= (1 << 7);;
             m_yPosBeforeRoll = transform.position.y;
         }
         
@@ -348,6 +349,7 @@ public class HeroKnight : MonoBehaviour
     public void EndRolling()
     {
         m_rolling = false;
+        m_body2d.excludeLayers = default;
     }
     
     public void EndHurting()
