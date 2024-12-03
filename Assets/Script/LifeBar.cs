@@ -16,6 +16,9 @@ public class LifeBar : MonoBehaviour
 
 	[SerializeField]
 	private float lifePoint;
+	
+	[SerializeField] 
+	private IntEventSO maxLifeEvent;
 
 	public float LifePoint
 	{
@@ -50,6 +53,13 @@ public class LifeBar : MonoBehaviour
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 
 		float percent = (float)s.Value / lifePoint ;
+
+		if (gameObject.CompareTag("Player"))
+		{
+			percent = (float)s.Value / maxLifeEvent.Value;
+			transform.parent.localScale = new Vector3(maxLifeEvent.Value * 2f, transform.parent.localScale.y, transform.parent.localScale.z);
+			transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(60+ (transform.parent.localScale.x / 2f), transform.parent.GetComponent<RectTransform>().anchoredPosition.y, 0);
+		}
 
 		transform.localScale = new Vector3(percent, transform.localScale.y, transform.localScale.z);
 		transform.localPosition = new Vector3(-(1-percent)*0.5f, transform.localPosition.y, transform.localPosition.z);

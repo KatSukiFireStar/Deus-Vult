@@ -1772,9 +1772,17 @@ PrefabInstance:
       propertyPath: lifePoint
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 18902503897066940, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
+      propertyPath: maxLifeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: a4263e9874823db4dbef41930bf9055b, type: 2}
+    - target: {fileID: 1672795584023637996, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_Pivot.y
@@ -1834,11 +1842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 309
+      value: 310
       objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

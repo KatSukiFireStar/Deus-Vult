@@ -46,3 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
   respawnTrigger: {fileID: 11400000, guid: 535d6572a475755488fb2dbaa9ccccfa, type: 2}
+  eventToReset:
+  - {fileID: 11400000, guid: 1eaa9fedf533443488e4ce3ad92e9652, type: 2}
+  - {fileID: 11400000, guid: 59e63b3052a5351489960dfc7a257e71, type: 2}
+  - {fileID: 11400000, guid: a5a285ec215f89743bbb9fcabdda5d4b, type: 2}
+  - {fileID: 11400000, guid: 6eb05dd90cdc56d4fbb855e6ae8cc298, type: 2}
+  - {fileID: 11400000, guid: 674ad515f6050f84c9abafff246ec238, type: 2}

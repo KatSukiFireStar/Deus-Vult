@@ -81854,6 +81854,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 284596596998828894, guid: a5c8086120a39e64ba088687e15c9b17, type: 3}
+      propertyPath: heartPickupEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 674ad515f6050f84c9abafff246ec238, type: 2}
     - target: {fileID: 2537254525848309986, guid: a5c8086120a39e64ba088687e15c9b17, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.4323444
@@ -81896,7 +81900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4360590996474244352, guid: a5c8086120a39e64ba088687e15c9b17, type: 3}
       propertyPath: m_Name
-      value: Heart
+      value: HeartGrotte
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
