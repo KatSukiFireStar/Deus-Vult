@@ -51,8 +51,6 @@ public class HeroKnight : MonoBehaviour
     private float m_rollDuration = 8.0f / 14.0f;
     private float m_rollCurrentTime;
 
-    private float m_yPosBeforeRoll;
-
     private List<KeyCode> m_inputs = new();
     
     [Header("Events")]
@@ -240,7 +238,6 @@ public class HeroKnight : MonoBehaviour
         else if (m_rolling)
         {
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce * m_speed, m_body2d.velocity.y);
-            transform.position = new(transform.position.x, m_yPosBeforeRoll);
         }
 
         //Set AirSpeed in animator
@@ -283,8 +280,7 @@ public class HeroKnight : MonoBehaviour
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
-            m_body2d.excludeLayers |= (1 << 7);;
-            m_yPosBeforeRoll = transform.position.y;
+            m_body2d.excludeLayers |= (1 << 7);
         }
         
         //Attack

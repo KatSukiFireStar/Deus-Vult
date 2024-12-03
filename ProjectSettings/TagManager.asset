@@ -9,6 +9,7 @@ TagManager:
   - DemonSlime
   - PlayerCollider
   - Trigger
+  - PlayerLife
   layers:
   - Default
   - TransparentFX

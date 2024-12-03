@@ -54,7 +54,7 @@ public class LifeBar : MonoBehaviour
 
 		float percent = (float)s.Value / lifePoint ;
 
-		if (gameObject.CompareTag("Player"))
+		if (gameObject.CompareTag("PlayerLife"))
 		{
 			percent = (float)s.Value / maxLifeEvent.Value;
 			transform.parent.localScale = new Vector3(maxLifeEvent.Value * 2f, transform.parent.localScale.y, transform.parent.localScale.z);

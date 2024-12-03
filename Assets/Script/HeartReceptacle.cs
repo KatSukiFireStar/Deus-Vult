@@ -10,7 +10,7 @@ public class HeartReceptacle : MonoBehaviour
 	[SerializeField] 
 	private BoolEventSO heartPickupEvent;
 
-	private void Start()
+	private void Awake()
 	{
 		//if heart already pick up destroy them
 		if (heartPickupEvent.Value)
