@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using EventSystem.SO;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class SkelettonBehaviour : MonoBehaviour
