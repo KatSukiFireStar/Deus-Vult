@@ -10,11 +10,12 @@ public class HeartReceptacle : MonoBehaviour
 	[SerializeField] 
 	private BoolEventSO heartPickupEvent;
 
-	private void Awake()
+	private void Start()
 	{
 		//if heart already pick up destroy them
 		if (heartPickupEvent.Value)
 		{
+			Debug.LogError("Je detruis le coeur " + gameObject.name);
 			Destroy(gameObject);
 		}
 	}
@@ -24,8 +25,10 @@ public class HeartReceptacle : MonoBehaviour
 		//if player collide add the amount of life to the max life value and destroy gameObject
 		if (other.CompareTag("PlayerCollider"))
 		{
+			Debug.LogError("Je prend le coeur " + gameObject.name);
 			amountLifeToAdd.Trigger();
 			heartPickupEvent.Value = true;
+			Debug.LogError("Je passe la valeur de " + heartPickupEvent.name + " a true");
 			Destroy(gameObject);
 		}
 	}

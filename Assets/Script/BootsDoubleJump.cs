@@ -13,6 +13,7 @@ public class BootsDoubleJump : MonoBehaviour
         //if boot already pick up destroy them
         if (_bootPickupEvent.events.Value)
         {
+            Debug.LogError("Je detruis les bottes");
             Destroy(gameObject);
         }
     }
@@ -20,8 +21,9 @@ public class BootsDoubleJump : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //if player collide add double jump and destroy gameObject
-        if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
+        if (other.CompareTag("PlayerCollider"))
         {
+            Debug.LogError("Je prend les bottes");
             _bootPickupEvent.Trigger();
             Destroy(gameObject);
         }
