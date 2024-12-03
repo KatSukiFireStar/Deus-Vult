@@ -5,15 +5,18 @@ using UnityEngine;
 public class HeartReceptacle : MonoBehaviour
 {
 	[SerializeField] 
+	private int number;
+	
+	[SerializeField] 
 	private IntTriggerSO amountLifeToAdd;
 
 	[SerializeField] 
-	private BoolEventSO heartPickupEvent;
+	private BoolsEventSO heartPickupEvent;
 
 	private void Start()
 	{
 		//if heart already pick up destroy them
-		if (heartPickupEvent.Value)
+		if (heartPickupEvent.Value[number])
 		{
 			Debug.LogError("Je detruis le coeur " + gameObject.name);
 			Destroy(gameObject);
@@ -27,8 +30,8 @@ public class HeartReceptacle : MonoBehaviour
 		{
 			Debug.LogError("Je prend le coeur " + gameObject.name);
 			amountLifeToAdd.Trigger();
-			heartPickupEvent.Value = true;
-			Debug.LogError("Je passe la valeur de " + heartPickupEvent.name + " a true");
+			heartPickupEvent.Value[number] = true;
+			Debug.LogError("Je passe la valeur de " + heartPickupEvent.name + " a true a l'ind " + number);
 			Destroy(gameObject);
 		}
 	}

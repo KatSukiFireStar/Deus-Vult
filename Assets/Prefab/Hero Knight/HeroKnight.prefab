@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 695718212448736047}
   - component: {fileID: 615377634750578324}
   - component: {fileID: 1115134400732427868}
+  - component: {fileID: 3776622985485653984}
   - component: {fileID: 3836970338421905413}
   - component: {fileID: 2655505060201611074}
   - component: {fileID: 2954181336601895002}
@@ -722,6 +723,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountToAddEvent: {fileID: 11400000, guid: 7f8e43e26316f9e428b94e27a1f651e3, type: 2}
   maxLifeEvent: {fileID: 11400000, guid: a4263e9874823db4dbef41930bf9055b, type: 2}
+--- !u!114 &3776622985485653984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632d795bee32a2f4ca0ec073c441b1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartPickupEvent: {fileID: 11400000, guid: ec77584432346f14aad28e7942855294, type: 2}
 --- !u!114 &3836970338421905413
 MonoBehaviour:
   m_ObjectHideFlags: 0

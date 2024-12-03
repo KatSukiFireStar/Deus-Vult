@@ -13,6 +13,9 @@ public class PlayerStart : MonoBehaviour
 	
 	[SerializeField] 
 	private List<BoolEventSO> eventToReset;
+	
+	[SerializeField]
+	private BoolsEventSO boolToReset;
 
 	private void Awake()
 	{
@@ -25,6 +28,13 @@ public class PlayerStart : MonoBehaviour
 			{
 				e.Value = false;
 			}
+			boolToReset.Value = new bool[4];
+			for (int i = 0; i < boolToReset.Value.Length; i++)
+			{
+				Debug.LogError("Salut " + i);
+				boolToReset.Value[i] = false;
+			}
 		}
+		Destroy(gameObject);
 	}
 }

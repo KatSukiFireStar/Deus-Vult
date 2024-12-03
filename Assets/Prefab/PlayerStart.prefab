@@ -48,7 +48,5 @@ MonoBehaviour:
   respawnTrigger: {fileID: 11400000, guid: 535d6572a475755488fb2dbaa9ccccfa, type: 2}
   eventToReset:
   - {fileID: 11400000, guid: 1eaa9fedf533443488e4ce3ad92e9652, type: 2}
-  - {fileID: 11400000, guid: 59e63b3052a5351489960dfc7a257e71, type: 2}
-  - {fileID: 11400000, guid: a5a285ec215f89743bbb9fcabdda5d4b, type: 2}
-  - {fileID: 11400000, guid: 6eb05dd90cdc56d4fbb855e6ae8cc298, type: 2}
-  - {fileID: 11400000, guid: 674ad515f6050f84c9abafff246ec238, type: 2}
+  boolToReset: {fileID: 11400000, guid: ec77584432346f14aad28e7942855294, type: 2}
+  playerSpawned: {fileID: 11400000, guid: 35c8a62f13059b040963a669b942a7c6, type: 2}

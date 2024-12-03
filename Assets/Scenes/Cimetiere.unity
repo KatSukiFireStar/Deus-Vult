@@ -7777,9 +7777,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 284596596998828894, guid: a5c8086120a39e64ba088687e15c9b17, type: 3}
-      propertyPath: heartPickupEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 6eb05dd90cdc56d4fbb855e6ae8cc298, type: 2}
+      propertyPath: number
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2537254525848309986, guid: a5c8086120a39e64ba088687e15c9b17, type: 3}
       propertyPath: m_LocalPosition.x
       value: -74.47

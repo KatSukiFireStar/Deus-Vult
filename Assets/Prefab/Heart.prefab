@@ -143,4 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee03bb085ccfa5408fa5b6d4aaced62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  number: 0
   amountLifeToAdd: {fileID: 11400000, guid: 80dde24b65fc5a147aea5db2126d5b57, type: 2}
+  heartPickupEvent: {fileID: 11400000, guid: ec77584432346f14aad28e7942855294, type: 2}
