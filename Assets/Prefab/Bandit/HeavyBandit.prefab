@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 61346583712760016}
   - component: {fileID: 1325564619272427650}
   - component: {fileID: 2712479825997474737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeavyBandit
   m_TagString: Ennemi
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeEvent: {fileID: 0}
+  ennemiType: 0
   takeDamageEventSO: {fileID: 0}
 --- !u!114 &2712479825997474737
 MonoBehaviour:
@@ -231,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8412f02bed5065d4ea8bf0cb339f365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ennemiType: 0
 --- !u!1 &6758595559119886712
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +336,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1672795584023637996, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2434633966350095588, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -425,6 +431,10 @@ PrefabInstance:
     - target: {fileID: 7710323876964879529, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
       propertyPath: m_Name
       value: LifeBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710323876964879529, guid: 875a76355d36f024e82f82767fc0bbab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
