@@ -46,6 +46,13 @@ public class PlayerLife : MonoBehaviour
 		_healingEvent.PropertyChanged += HealingEventOnPropertyChanged;
 		respawnEvent.PropertyChanged += RespawnEventOnPropertyChanged;
 		prayEvent.PropertyChanged += PrayEventOnPropertyChanged;
+		_maxLifeEvent.PropertyChanged += MaxLifeEventOnPropertyChanged;
+	}
+
+	private void MaxLifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+	{
+		GenericEventSO<int> s = (GenericEventSO<int>)sender;
+		playerLife.Value = s.Value;
 	}
 
 	private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
