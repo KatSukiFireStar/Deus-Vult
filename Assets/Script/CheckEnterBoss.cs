@@ -14,6 +14,7 @@ public class CheckEnterBoss : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
+		//Check if the player go out of a trigger and if so close the room by remove the trigger value in collider and show a sprite renderer
 		if (other.CompareTag("PlayerCollider"))
 		{
 			if (positionExit == Position.left && other.transform.position.x < transform.position.x)

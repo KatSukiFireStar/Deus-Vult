@@ -10,6 +10,7 @@ public class CheckCollisionEnnemi : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Check if the player collide with an ennemi attack collider and apply the damage to the player event
         if (other.gameObject.CompareTag("Player"))
         {
             damageTrigger.Trigger();

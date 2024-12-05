@@ -47,12 +47,12 @@ public class LifeBar : MonoBehaviour
 			life.PropertyChanged -= LifeOnPropertyChanged;
 	}
 
-	private void Start()
-	{
-	}
 
 	private void LifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//If the event value change apply the next change
+		//Calcul the percent of life for the current entity and update the life bar
+		
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 
 		float percent = (float)s.Value / lifePoint ;

@@ -35,6 +35,7 @@ public class LifeManagerEnnemi : MonoBehaviour
 
 	private void Awake()
 	{
+		//Create the death event and add it to the ennemi script which will need it
 		BoolEventSO deadEvent = ScriptableObject.CreateInstance<BoolEventSO>();
 		
 		if (ennemiType == EnnemiEnum.Bandit)
@@ -65,6 +66,8 @@ public class LifeManagerEnnemi : MonoBehaviour
 
 	private void LifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//If the event value change apply the next change
+		//If the take damage is not null set it to true and if the s.value < 0 set the dead event to true
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		if (takeDamageEventSO != null)
 			takeDamageEventSO.Value = true;

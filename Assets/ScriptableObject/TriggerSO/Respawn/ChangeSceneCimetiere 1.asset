@@ -16,5 +16,5 @@ MonoBehaviour:
   modifier:
     sceneName: Cimetiere
     respawnPosition: {x: -77, y: 5.8}
-    minXBoundary: -72
+    minXBoundary: -78
     maxXBoundary: 0

@@ -11,6 +11,8 @@ public class AddTakeDamageEvent : MonoBehaviour
 	
 	private void Awake()
 	{
+		//Create take damage event for each script who need it and assign it to them
+		
 		BoolEventSO boolEventSO = ScriptableObject.CreateInstance<BoolEventSO>();
 
 		if (ennemiType == EnnemiEnum.Bandit)

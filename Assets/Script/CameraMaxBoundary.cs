@@ -22,6 +22,8 @@ public class CameraMaxBoundary : MonoBehaviour
 
 	private void Update()
 	{
+		//Check the position of the camera in order to not print the edge of the tilemap
+		//if the position is the minX or maxX the position is changed
 		if(transform.parent.position.x < minX)
 			transform.position = new Vector3(minX, transform.position.y, transform.position.z);
 		else if(transform.parent.position.x > maxX)

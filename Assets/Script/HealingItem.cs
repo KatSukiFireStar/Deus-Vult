@@ -11,22 +11,10 @@ public class HealingItem : MonoBehaviour
     [SerializeField] private IntEventSO _playerLifeEvent;
 
     [SerializeField] private IntEventSO _maxLifeEvent;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //If the player collide heal him and destoy apple
         if (other.CompareTag("PlayerCollider"))
         {
             _healingTrigger.Trigger();

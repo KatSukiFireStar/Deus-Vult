@@ -18,9 +18,9 @@ public class ChangeScene : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		//If the player collide with the trigger, use a trigger in order to change is next position and do a fade out
 		if (other.CompareTag("PlayerCollider"))
 		{
-			Debug.LogWarning("Je change de scene pour scene: " + changeSceneTrigger.modifier.sceneName);
 			animator.SetTrigger("FadeOut");
 			changeSceneTrigger.Trigger();
 		}

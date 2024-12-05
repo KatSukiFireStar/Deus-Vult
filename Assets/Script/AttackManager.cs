@@ -10,6 +10,8 @@ public class AttackManager : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		//Manage the attack of the player and apply the damage to the right event of the other collider
+		
 		if (other.gameObject.CompareTag("Ennemi"))
 		{
 			other.gameObject.GetComponent<LifeManagerEnnemi>().LifeEvent.Value -= attackPoint;

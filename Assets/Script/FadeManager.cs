@@ -20,6 +20,8 @@ public class FadeManager : MonoBehaviour
 
 	public void OnFadeComplete()
 	{
+		//It's launched with the animation
+		//It'll load the scene in the change scene event and apply the good information to the player
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 				
 		SceneManager.LoadScene(changeSceneEvent.Value.sceneName);

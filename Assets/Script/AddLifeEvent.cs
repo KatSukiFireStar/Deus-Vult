@@ -14,6 +14,8 @@ public class AddLifeEvent : MonoBehaviour
 	
 	private void Awake()
 	{
+		//Create life event for each script who need it and assign it to them
+		
 		lifeBar = GetComponent<LifeBar>();
 		lifeBar.LifePoint = life;
 		eventSO = ScriptableObject.CreateInstance<IntEventSO>();
@@ -40,6 +42,7 @@ public class AddLifeEvent : MonoBehaviour
 
 	private void EventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//If value < life print lifeBar to the screen
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		if (s.Value < life)
 		{

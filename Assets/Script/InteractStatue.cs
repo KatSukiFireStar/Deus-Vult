@@ -20,6 +20,7 @@ public class InteractStatue : MonoBehaviour
 
 	private void Update()
 	{
+		//if the player can't pray (not in the collider of the statue) remove all interaction
 		if(!canPray)
 			return;
 		
@@ -32,6 +33,7 @@ public class InteractStatue : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		//Check if the player enter on the statue collider and allow him to pray  and show the interaction touch
 		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
 		{
 			canPray = true;
@@ -42,6 +44,7 @@ public class InteractStatue : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
+		//Check if the player go out off the statue collider and allow him to pray  and show the interaction touch
 		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))
 		{
 			canPray = false;
