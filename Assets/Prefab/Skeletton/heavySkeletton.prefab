@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4805181885227780}
   - component: {fileID: 95346456782871180}
   - component: {fileID: 2650011088619599128}
+  - component: {fileID: 5063975969669108361}
   - component: {fileID: 212259381048184306}
   - component: {fileID: 50512961935941442}
   - component: {fileID: 61252362154681264}
@@ -81,6 +82,20 @@ MonoBehaviour:
     m_Bits: 64
   takeDamageEvent: {fileID: 0}
   deadEvent: {fileID: 0}
+--- !u!114 &5063975969669108361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83cbeb1a0bf64b545b816bc3f5b1f280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applePrefab: {fileID: 7478189960424040071, guid: 96f20eee9811c00458728a98b9a914ad, type: 3}
+  deathEvent: {fileID: 0}
 --- !u!212 &212259381048184306
 SpriteRenderer:
   m_ObjectHideFlags: 0

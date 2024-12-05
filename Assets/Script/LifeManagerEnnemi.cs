@@ -48,6 +48,8 @@ public class LifeManagerEnnemi : MonoBehaviour
 			_skelettonBehaviour.DeadEvent = deadEvent;
 			_skelettonBehaviour.AddSuscribeDead();
 		}
+		gameObject.GetComponent<SpawnAppleAfterDeath>().DeathEvent = deadEvent;
+		gameObject.GetComponent<SpawnAppleAfterDeath>().SuscribeToDeathEvent();
 		deadEventSO = deadEvent;
 	}
 
