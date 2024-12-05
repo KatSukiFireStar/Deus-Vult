@@ -96,11 +96,9 @@ public class HeroKnight : MonoBehaviour
         
         m_inputs.Add(KeyCode.A);
         m_inputs.Add(KeyCode.D);
-        m_inputs.Add(KeyCode.W);
-        m_inputs.Add(KeyCode.S);
         m_inputs.Add(KeyCode.Space);
-        m_inputs.Add(KeyCode.Z);
         m_inputs.Add(KeyCode.Q);
+        m_inputs.Add(KeyCode.LeftShift);
     }
 
     private void PauseEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
