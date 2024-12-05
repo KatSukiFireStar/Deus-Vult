@@ -46,8 +46,8 @@ public class LifeManagerBoD : MonoBehaviour
         takeDamageEventSO.Value = true;
         if (s.Value <= 0)
         {
-            deadEventSO.Value = true; 
-            s.Value = 0;
+            deadEventSO.Value = true;
+            //s.Value = 0;
         }
     }
 }

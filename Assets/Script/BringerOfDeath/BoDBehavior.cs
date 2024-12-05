@@ -44,6 +44,7 @@ public class BoDBehavior : MonoBehaviour
     private bool _start = false;
     private bool _casting = false;
     private bool _chasing = false;
+    private bool _hasPlayer = false;
     
     private GameObject _player;
     
@@ -56,14 +57,13 @@ public class BoDBehavior : MonoBehaviour
         _deltaAttacked = deltaAttack;
         startEventSO.Value = true;
     }
-
+    
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
         _start = s.Value;
         if (s.Value)
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
             _inputX = -1;
             _saveInputX = _inputX;
         }
@@ -73,6 +73,8 @@ public class BoDBehavior : MonoBehaviour
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
         _dying = s.Value;
+        _animator.SetTrigger("IsDead");
+        _body2d.velocity = new Vector2(0, 0);
     }
 
     private void TakeDamageEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -161,6 +163,10 @@ public class BoDBehavior : MonoBehaviour
                 else if (hit.distance <= 5f)
                 {
                     _chasing = true;
+                    if (!_hasPlayer)
+                    {
+                        _player = GameObject.FindGameObjectWithTag("Player");
+                    }
                 }
             }
         }
@@ -172,6 +178,7 @@ public class BoDBehavior : MonoBehaviour
         {
             _animator.SetTrigger("IsDead");
             _body2d.velocity = new Vector2(0, 0);
+            _inputX = 0;
             _dying = true;
         }
         

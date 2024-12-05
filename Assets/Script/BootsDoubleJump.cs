@@ -22,6 +22,7 @@ public class BootsDoubleJump : MonoBehaviour
         //if player collide add double jump and destroy gameObject
         if (other.CompareTag("PlayerCollider"))
         {
+            //Debug.LogError("Je prend les bottes");
             _bootPickupEvent.Trigger();
             Destroy(gameObject);
         }
