@@ -213,7 +213,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
                 else if (hit.distance <= 5f)
                 {
                    m_numAttack = Random.Range(0, 4);
-
+                   //There is a problem with the attack direction of the 4th attack (always left) so if he goes on right i change the attack
                    if (m_numAttack == 3 && saveInputX > 0)
                    {
                        m_numAttack = 2;
