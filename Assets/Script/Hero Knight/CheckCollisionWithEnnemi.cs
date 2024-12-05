@@ -2,6 +2,9 @@ using System;
 using EventSystem.SO;
 using UnityEngine;
 
+/**
+ * To damage the player when the collide with an enemy
+ */
 public class CheckCollisionWithEnnemi : MonoBehaviour
 {
 	[SerializeField]

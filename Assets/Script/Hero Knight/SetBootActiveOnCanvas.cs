@@ -3,6 +3,9 @@ using System.ComponentModel;
 using EventSystem.SO;
 using UnityEngine;
 
+/*
+ * Checks if the player has boots and displays them in the UI
+ */
 public class SetBootActiveOnCanvas : MonoBehaviour
 {
 	[SerializeField] 

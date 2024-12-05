@@ -60,6 +60,10 @@ public class BanditBehaviour : MonoBehaviour
         saveInputX = inputX;
     }
 
+    /*
+     * Event system subscribing
+     */
+    
     public void AddSuscribe()
     {
         takeDamageEvent.PropertyChanged += TakeDamageEventOnPropertyChanged;
@@ -132,6 +136,7 @@ public class BanditBehaviour : MonoBehaviour
             }
         }
 
+        // Choose what kind of attack
         if (!m_isAttacking && !m_isHurt)
         {
             if (hitb && !attackb)

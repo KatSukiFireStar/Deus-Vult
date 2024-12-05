@@ -3,6 +3,10 @@ using System.ComponentModel;
 using EventSystem.SO;
 using UnityEngine;
 
+/*
+ * Remove the door when you kill a boss
+ * versatile enough for various objects and mobs
+ */
 public class RemoveObjectOnDeathEvent : MonoBehaviour
 {
 	[SerializeField] 

@@ -43,7 +43,7 @@ public class ColorSwap_HeroKnight : MonoBehaviour
         if(m_colorSwapTex)
             m_colorSwapTex.Apply();
     }
-
+    
     public static Color ColorFromInt(int c, float alpha = 1.0f)
     {
         int r = (c >> 16) & 0x000000FF;

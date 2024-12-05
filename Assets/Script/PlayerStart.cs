@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using EventSystem.SO;
 using UnityEngine;
 
+/*
+ * Spawns the player on the first scene, will be disabled if we go back to the scene but the player is already spawned
+ */
 public class PlayerStart : MonoBehaviour
 {
 	[SerializeField] 

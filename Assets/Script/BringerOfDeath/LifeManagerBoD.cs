@@ -3,6 +3,7 @@ using EventSystem.SO;
 using UnityEngine;
 // ReSharper disable InconsistentNaming
 
+/*Takes care of subscribing and changing the life of the boss*/
 public class LifeManagerBoD : MonoBehaviour
 {
     [SerializeField] private int life = 200;

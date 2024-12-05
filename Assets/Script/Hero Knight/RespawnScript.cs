@@ -4,6 +4,10 @@ using EventSystem.SO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Takes care of respawning the player when they die.
+ * Knows the current scene and respawn point
+ */
 public class RespawnScript : MonoBehaviour
 {
 	[SerializeField] 
