@@ -2,6 +2,9 @@ using System;
 using EventSystem.SO;
 using UnityEngine;
 
+/*
+ * Fix for player going through stairs, this is just a separate check to stop them from going through
+ */
 public class SetGroundedForStair : MonoBehaviour
 {
 

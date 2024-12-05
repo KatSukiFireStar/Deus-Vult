@@ -4,6 +4,9 @@ using EventSystem.SO;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/*
+ * Will randomly spawn an apple (Healing item) when the linked DeathEvent is triggered
+ */
 public class SpawnAppleAfterDeath : MonoBehaviour
 {
 	[SerializeField] 
