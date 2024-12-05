@@ -89,6 +89,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
     
     private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+        //Set the new value for the 2nd phase
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
         m_transform = s.Value;
         m_isTransforming = s.Value;
@@ -103,6 +104,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
 
     private void DeadEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+        //Death event, set animation and speed
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
         m_animator.SetTrigger("Death");
         m_body2d.velocity = new Vector2(0, 0);
@@ -200,7 +202,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
             return;
         }
         
-        // Raycasting to find the player
+        // Raycasting to find the player distance and adapt to it
         RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 5f,
             layerMask);
         float dist = -1;
@@ -247,7 +249,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         }
         
         
-        
+        //The next few if are for the player state management
         //Attack
         if (m_attack && !m_isAttacking)
         {
@@ -276,6 +278,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
     
     public void EndAttacking()
     {
+        //Use with animation
         m_isAttacking = false;
         m_attack = false;
         m_numAttack = -1;
@@ -286,6 +289,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
     
     public void EndHurting()
     {
+        //Use with animation
         inputX = saveInputX;
         takeDamageEventSO.Value = false;
         m_isHurt = false;
@@ -294,14 +298,15 @@ public class DemonSlimeBehaviour : MonoBehaviour
     
     public void EndTransforming()
     {
+        //Use with animation
         m_isTransforming = false;
         m_transform = true;
         transform.GetChild(1).gameObject.SetActive(true);
-        // GetComponent<LifeManagerDemonSlime>().ReSuscribeLife();
     }
 
     public void EndDeath()
     {
+        //Use with animation
         Destroy(gameObject);
     }
 }

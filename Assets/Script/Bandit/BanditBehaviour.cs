@@ -94,6 +94,7 @@ public class BanditBehaviour : MonoBehaviour
 
     void Update()
     {
+        //if he is dead return
         if (m_dying)
             return;
         
@@ -120,6 +121,7 @@ public class BanditBehaviour : MonoBehaviour
         if(!m_isHurt)
             m_body2d.velocity = new Vector2(inputX * m_speed, 0);
 
+        //Use a raycast to check if the player is in front of the entity and adapt the behaviour
         RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 2.5f,
             layerMask);
         bool hitb = false;
@@ -156,7 +158,7 @@ public class BanditBehaviour : MonoBehaviour
             }
         }
 
-
+        //The next few if are for the player state management
         //Death
         if (m_isDead)
         {
@@ -196,12 +198,14 @@ public class BanditBehaviour : MonoBehaviour
 
     public void EndAttacking()
     {
+        //Use with animation / Stop the attack
         m_isAttacking = false;
         m_attack = false;
     }
 
     public void EndHurting()
     {
+        //Use with animation / Stop the hurting
         takeDamageEvent.Value = false;
         m_isHurt = false;
         inputX = saveInputX;
@@ -210,6 +214,7 @@ public class BanditBehaviour : MonoBehaviour
 
     public void EndDeath()
     {
+        //Use with animation / Destroy on death
         Destroy(gameObject);
     }
 }

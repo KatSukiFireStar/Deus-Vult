@@ -3,7 +3,7 @@ using EventSystem.SO;
 using UnityEngine;
 
 /**
- * To damage the player when the collide with an enemy
+ * To damage the player when he collide with an enemy
  */
 public class CheckCollisionWithEnnemi : MonoBehaviour
 {

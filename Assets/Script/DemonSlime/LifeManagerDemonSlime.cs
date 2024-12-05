@@ -63,6 +63,9 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void LifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//Called by the life change value and adapt to it
+		//In first phase set transformation event to true
+		//In second phase kill him
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		takeDamageEventSO.Value = true;
 		if (s.Value <= 0 && transformEventSO.Value)

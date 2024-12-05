@@ -209,6 +209,10 @@ public class SkelettonBehaviour : MonoBehaviour
         
     }
     
+    /*
+     * Used in the animation graph
+     */
+    
     public void EndAttacking()
     {
         m_isAttacking = false;

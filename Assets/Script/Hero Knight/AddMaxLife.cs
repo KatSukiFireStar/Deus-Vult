@@ -23,6 +23,8 @@ public class AddMaxLife : MonoBehaviour
 
 	private void AmountToAddEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//Use to add an amount of life to the max life event of the player 
+		//HeartReceptacle
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		
 		maxLifeEvent.Value += s.Value;

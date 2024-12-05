@@ -35,7 +35,7 @@ public class RespawnScript : MonoBehaviour
 
 	private void RespawnBoolEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
-		//ToDo: Faire le respawn et faire le fade
+		//Respawn the player and do a fade on
 		
 		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
 		if (s.Value)

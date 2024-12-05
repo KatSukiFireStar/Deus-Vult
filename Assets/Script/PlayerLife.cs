@@ -38,6 +38,7 @@ public class PlayerLife : MonoBehaviour
 
 	private void Awake()
 	{
+		//Subscription for all event
 		playerLife.Value = 200;
 		_maxLifeEvent.Value = 200;
 		damageEvent.PropertyChanged += DamageEventOnPropertyChanged;
@@ -51,6 +52,7 @@ public class PlayerLife : MonoBehaviour
 
 	private void OnDestroy()
 	{
+		//Unsubscription for all event
 		damageEvent.PropertyChanged -= DamageEventOnPropertyChanged;
 		blockingEvent.PropertyChanged -= BlockingEventOnPropertyChanged;
 		playerLife.PropertyChanged -= PlayerLifeOnPropertyChanged;
@@ -62,12 +64,14 @@ public class PlayerLife : MonoBehaviour
 
 	private void MaxLifeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//if max life is augmented set the player life to max life
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		playerLife.Value = s.Value;
 	}
 
 	private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//If the player pray toi the statue heal him
 		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
 		if (s.Value)
 		{
@@ -77,6 +81,7 @@ public class PlayerLife : MonoBehaviour
 
 	private void RespawnEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//If the player respawn value (use in death) change heal the player
 		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
 		if (s.Value)
 		{
@@ -86,38 +91,31 @@ public class PlayerLife : MonoBehaviour
 
 	private void HealingEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//Add the healing amount to the player life
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		playerLife.Value += s.Value;
+	}
+
+	private void PlayerLifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+	{
+		//Check if the player life value is not > to the max life value
+		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		if (s.Value > _maxLifeEvent.Value)
 		{
 			s.Value = _maxLifeEvent.Value;
 		}
 	}
 
-	private void Start()
-	{
-		
-	}
-
-	private void PlayerLifeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-	{
-		GenericEventSO<int> s = (GenericEventSO<int>)sender;
-		//Todo : Ajouter gestion de la vie quand elle atteint zero
-		if (playerLife.Value > _maxLifeEvent.Value)
-		{
-			playerLife.Value = _maxLifeEvent.Value;
-		}
-	}
-
 	private void BlockingEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
+		//Not used it's for the blocking but we don't have time
 		GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
 		blocking = s.Value;
 	}
 
 	private void DamageEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
 	{
-		//Todo : Verifiez que la vie ne descend pas en dessous de 0
+		//Apply the damage to the player
 		GenericEventSO<int> s = (GenericEventSO<int>)sender;
 		if (!rolling && !blocking)
 		{

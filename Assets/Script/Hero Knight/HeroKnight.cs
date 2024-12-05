@@ -139,6 +139,7 @@ public class HeroKnight : MonoBehaviour
 
     private void FadeEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+        //Reset the player state in respawn / scene change 
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
         if (s.Value)
         {

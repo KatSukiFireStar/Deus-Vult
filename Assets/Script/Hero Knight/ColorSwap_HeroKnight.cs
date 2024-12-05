@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System;
 
+
+/*
+ * This script is from the hero knight package we don't use it
+ */
 public class ColorSwap_HeroKnight : MonoBehaviour
 {
     // Accessable in Editor
