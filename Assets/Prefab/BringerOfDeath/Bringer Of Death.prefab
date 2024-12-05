@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7587949073541741268}
   - component: {fileID: 9121858524354326775}
-  - component: {fileID: 7807536711361976926}
+  - component: {fileID: 3009828603165332445}
   m_Layer: 0
   m_Name: ColliderAttack
   m_TagString: Untagged
@@ -299,7 +299,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.37537372, y: 0.2809801}
   m_EdgeRadius: 0
---- !u!114 &7807536711361976926
+--- !u!114 &3009828603165332445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3333225272244510966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1b2c3ab13bee844bbd786de1cde526, type: 3}
+  m_Script: {fileID: 11500000, guid: b98938dca43de3f4590304b8334649e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTriggers: []
+  damageTrigger: {fileID: 11400000, guid: 131718bc8194f5b4186b8e88c451a364, type: 2}

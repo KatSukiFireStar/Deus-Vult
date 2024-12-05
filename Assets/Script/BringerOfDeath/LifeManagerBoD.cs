@@ -30,7 +30,7 @@ public class LifeManagerBoD : MonoBehaviour
     
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lifeEvent.Value = life;
         takeDamageEventSO.Value = false;

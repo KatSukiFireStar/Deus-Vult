@@ -152,7 +152,7 @@ public class BoDBehavior : MonoBehaviour
             layerMask);
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider)
+            if (hit.collider != null)
             {
                 if (hit.distance <= 1f)
                 {
@@ -160,7 +160,6 @@ public class BoDBehavior : MonoBehaviour
                 }
                 else if (hit.distance <= 5f)
                 {
-                    _attack = false;
                     _chasing = true;
                 }
             }
@@ -177,7 +176,7 @@ public class BoDBehavior : MonoBehaviour
         }
         
         //Attack
-        else if (_attack && !_isAttacking && _deltaAttacked < 0)
+        else if (_attack && !_isAttacking && _deltaAttacked <= 0)
         {
             _animator.SetTrigger("Attack");
             _inputX = 0;
