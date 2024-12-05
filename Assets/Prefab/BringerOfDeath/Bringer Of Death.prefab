@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02e622a45c4a4fab9b5bf65f2301080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 200
+  life: 1500
   lifeEvent: {fileID: 11400000, guid: 62ed60595a1f64b00b64d6b68112ddbb, type: 2}
   takeDamageEventSO: {fileID: 11400000, guid: 71bc90096b63e45fab589b7d4a44467f, type: 2}
   deadEventSO: {fileID: 11400000, guid: 173ba34a347e54c4eb4ae996efb81274, type: 2}
