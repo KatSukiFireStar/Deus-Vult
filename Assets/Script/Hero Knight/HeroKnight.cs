@@ -44,6 +44,7 @@ public class HeroKnight : MonoBehaviour
     private bool m_secondJump = false;
     private bool m_hasBoots = false;
     private bool m_canRoll = false;
+    private bool m_pause = false;
     private int m_facingDirection = 1;
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
@@ -75,6 +76,9 @@ public class HeroKnight : MonoBehaviour
     [SerializeField]
     private BoolEventSO groundedEvent;
     
+    [SerializeField] 
+    private BoolEventSO pauseEvent;
+    
     public BoolEventSO HurtEvent
     { 
         get => hurtEvent;
@@ -88,6 +92,7 @@ public class HeroKnight : MonoBehaviour
         fadeEvent.PropertyChanged += FadeEventOnPropertyChanged;
         prayEvent.PropertyChanged += PrayEventOnPropertyChanged;
         bootPickupEvent.PropertyChanged += BootPickupEventOnPropertyChanged;
+        pauseEvent.PropertyChanged += PauseEventOnPropertyChanged;
         
         m_inputs.Add(KeyCode.A);
         m_inputs.Add(KeyCode.D);
@@ -96,6 +101,21 @@ public class HeroKnight : MonoBehaviour
         m_inputs.Add(KeyCode.Space);
         m_inputs.Add(KeyCode.Z);
         m_inputs.Add(KeyCode.Q);
+    }
+
+    private void PauseEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
+        m_pause = s.Value;
+
+        if (!s.Value)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 
     private void OnDestroy()
@@ -160,6 +180,15 @@ public class HeroKnight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !m_pause)
+        {
+            pauseEvent.Value = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && m_pause)
+        {
+            pauseEvent.Value = false;
+        }
+        
         if (m_pray && m_isPraying && m_endPray)
         {
             bool goOut = false;
@@ -179,7 +208,7 @@ public class HeroKnight : MonoBehaviour
             prayEvent.Value = false;
         }
         
-        if (m_dying || !m_canMove)
+        if (m_dying || !m_canMove || m_pause)
             return;
         
         
