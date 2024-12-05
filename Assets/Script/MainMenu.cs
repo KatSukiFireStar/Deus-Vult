@@ -8,6 +8,18 @@ public class MainMenu : MonoBehaviour
 	{
 		SceneManager.LoadScene("VillageScene");
 	}
+
+	public void Controls()
+	{
+		transform.GetChild(1).gameObject.SetActive(false);
+		transform.GetChild(2).gameObject.SetActive(true);
+	}
+
+	public void Return()
+	{
+		transform.GetChild(1).gameObject.SetActive(true);
+		transform.GetChild(2).gameObject.SetActive(false);
+	}
 	
 	public void Quit()
 	{
