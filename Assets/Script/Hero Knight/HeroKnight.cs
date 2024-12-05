@@ -79,6 +79,9 @@ public class HeroKnight : MonoBehaviour
     [SerializeField] 
     private BoolEventSO pauseEvent;
     
+    /*
+     * EVENT SYSTEM
+     */
     public BoolEventSO HurtEvent
     { 
         get => hurtEvent;
@@ -87,6 +90,7 @@ public class HeroKnight : MonoBehaviour
 
     private void Awake()
     {
+        //Subscribing to events
         hurtEvent.PropertyChanged += HurtEventOnPropertyChanged;
         deathEvent.PropertyChanged += DeathEventOnPropertyChanged;
         fadeEvent.PropertyChanged += FadeEventOnPropertyChanged;
@@ -101,6 +105,7 @@ public class HeroKnight : MonoBehaviour
         m_inputs.Add(KeyCode.LeftShift);
     }
 
+    // If the player wants to pause this triggers
     private void PauseEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
@@ -125,6 +130,7 @@ public class HeroKnight : MonoBehaviour
         bootPickupEvent.PropertyChanged -= BootPickupEventOnPropertyChanged;
     }
 
+    // Triggers when the player prays
     private void PrayEventOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>)sender;
@@ -178,6 +184,7 @@ public class HeroKnight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Opens pause menu
         if (Input.GetKeyDown(KeyCode.Escape) && !m_pause)
         {
             pauseEvent.Value = true;
@@ -187,6 +194,7 @@ public class HeroKnight : MonoBehaviour
             pauseEvent.Value = false;
         }
         
+        // Taking care of praying
         if (m_pray && m_isPraying && m_endPray)
         {
             bool goOut = false;
@@ -389,6 +397,10 @@ public class HeroKnight : MonoBehaviour
         }
     }
 
+    /*
+     * Used in the animation graph
+     */
+    
     public void EndAttacking()
     {
         m_attacking = false;

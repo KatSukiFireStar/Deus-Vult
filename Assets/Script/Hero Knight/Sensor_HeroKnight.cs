@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * For physics, to slide on walls and check if grounded
+ */
 public class Sensor_HeroKnight : MonoBehaviour {
 
     private int m_ColCount = 0;

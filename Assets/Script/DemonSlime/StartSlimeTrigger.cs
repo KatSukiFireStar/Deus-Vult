@@ -8,6 +8,7 @@ public class StartSlimeTrigger : MonoBehaviour
 	private BoolEventSO startSlimeEvent;
 
 
+	// Starts the slime when the player enters the room
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag("Player") || other.CompareTag("PlayerCollider"))

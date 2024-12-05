@@ -67,7 +67,10 @@ public class DemonSlimeBehaviour : MonoBehaviour
         transformEventSO.PropertyChanged -= TransformEventSOOnPropertyChanged;
         startEventSO.PropertyChanged -= StartEventSOOnPropertyChanged;
     }
-
+    
+    /*
+    * Event system
+    */
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
@@ -83,6 +86,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         }
     }
 
+    
     private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
@@ -122,9 +126,11 @@ public class DemonSlimeBehaviour : MonoBehaviour
     {
         if (!m_start || m_dying || m_isTransforming)
             return;
-
+        
+        // Transform check, changes the behavior depending on whetehr it is transformed or not
         if (!m_transform)
         {
+            //Move between two points
             if ((m_body2d.position.x < minX && inputX < 0) || (m_body2d.position.x > maxX && inputX > 0))
             {
                 inputX *= -1;
@@ -134,6 +140,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
         }
         else
         {
+            //Move towards the player
             if (!m_isHurt && !m_isAttacking && m_player.transform.position.x < transform.position.x)
             {
                 inputX = -1;
@@ -193,6 +200,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
             return;
         }
         
+        // Raycasting to find the player
         RaycastHit2D[] hits = Physics2D.BoxCastAll(m_body2d.position, Vector2.one * 0.75f, 0f, new(saveInputX, 0), 5f,
             layerMask);
         float dist = -1;
@@ -223,7 +231,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
             }
         }
         
-        if (!m_isAttacking)
+        if (!m_isAttacking) // Choosing attack
         {
             if (m_numAttack >= 2)
             {

@@ -50,13 +50,18 @@ public class BoDBehavior : MonoBehaviour
     
     private void Awake()
     {
+        //Subscribe
         takeDamageEventSO.PropertyChanged += TakeDamageEventSOOnPropertyChanged;
         deadEventSO.PropertyChanged += DeadEventSOOnPropertyChanged;
         startEventSO.PropertyChanged += StartEventSOOnPropertyChanged;
-
+        
         _deltaAttacked = deltaAttack;
         startEventSO.Value = true;
     }
+    
+    /*
+     * Event system
+     */
     
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
@@ -83,6 +88,10 @@ public class BoDBehavior : MonoBehaviour
         _takeDamage = s.Value;
     }
 
+    /*
+     * End of event system
+     */
+    
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -96,6 +105,7 @@ public class BoDBehavior : MonoBehaviour
         if (!_start || _dying || _isDead)
             return;
 
+        // Soit on marche en rond soit on poursuit le player
         if (!_chasing)
         {
             if ((_body2d.position.x < minX && _inputX < 0) || (_body2d.position.x > maxX && _inputX > 0))
@@ -119,6 +129,7 @@ public class BoDBehavior : MonoBehaviour
                 _saveInputX = _inputX;
         }
 
+        // On diminue le delta tant que l'on attaque pas
         if (!_isAttacking && _deltaAttacked > 0)
         {
             _deltaAttacked -= Time.deltaTime;
@@ -150,6 +161,7 @@ public class BoDBehavior : MonoBehaviour
         else if (_isHurt)
             _body2d.velocity = new Vector2(-_saveInputX * m_speed, 0);
         
+        // Detecting the player and changing behavior accordingly
         RaycastHit2D[] hits = Physics2D.BoxCastAll(_body2d.position, Vector2.one * 0.75f, 0f, new(_saveInputX, 0), 5f,
             layerMask);
         foreach (RaycastHit2D hit in hits)
@@ -208,6 +220,9 @@ public class BoDBehavior : MonoBehaviour
             _animator.SetInteger("AnimState", 0);
     }
     
+    /*
+     * Used at the end of animations
+     */
     public void EndAttacking()
     {
         _isAttacking = false;

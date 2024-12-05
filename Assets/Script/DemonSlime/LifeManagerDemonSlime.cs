@@ -37,7 +37,6 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void Awake()
 	{
-		Debug.Log("J'assigne");
 		lifeEvent.Value = life;
 		transformEventSO.Value = false;
 		transformEventSO.PropertyChanged += TransformEventSOOnPropertyChanged;
@@ -46,7 +45,6 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		Debug.Log("Je destroy");
 		transformEventSO.PropertyChanged -= TransformEventSOOnPropertyChanged;
 		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
 		transformEventSO.Value = false;
