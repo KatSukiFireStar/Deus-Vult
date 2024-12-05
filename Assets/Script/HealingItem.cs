@@ -27,7 +27,7 @@ public class HealingItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && _playerLifeEvent.Value < _maxLifeEvent.Value)
+        if (other.CompareTag("PlayerCollider"))
         {
             _healingTrigger.Trigger();
             Destroy(gameObject);
