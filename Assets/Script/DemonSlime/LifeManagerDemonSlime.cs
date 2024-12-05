@@ -37,6 +37,7 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void Awake()
 	{
+		Debug.Log("J'assigne");
 		lifeEvent.Value = life;
 		transformEventSO.Value = false;
 		transformEventSO.PropertyChanged += TransformEventSOOnPropertyChanged;
@@ -45,10 +46,10 @@ public class LifeManagerDemonSlime : MonoBehaviour
 
 	private void OnDestroy()
 	{
+		Debug.Log("Je destroy");
 		transformEventSO.PropertyChanged -= TransformEventSOOnPropertyChanged;
 		lifeEvent.PropertyChanged -= LifeEventOnPropertyChanged;
 		transformEventSO.Value = false;
-		//ToDo: Je crois que le probleme vient du faite que le transform est pas reset a false apres le respawn du joueur
 	}
 
 	private void TransformEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)

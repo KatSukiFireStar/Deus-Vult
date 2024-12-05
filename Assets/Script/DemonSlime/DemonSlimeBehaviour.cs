@@ -77,6 +77,9 @@ public class DemonSlimeBehaviour : MonoBehaviour
             m_player = GameObject.FindGameObjectWithTag("Player");
             inputX = -1;
             saveInputX = inputX;
+            m_transform = false;
+            EndAttacking();
+            EndHurting();
         }
     }
 
@@ -97,7 +100,9 @@ public class DemonSlimeBehaviour : MonoBehaviour
     private void DeadEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         GenericEventSO<bool> s = (GenericEventSO<bool>) sender;
-        m_dying = s.Value;
+        m_animator.SetTrigger("Death");
+        m_body2d.velocity = new Vector2(0, 0);
+        m_dying = true;
     }
 
     private void TakeDamageEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -115,7 +120,7 @@ public class DemonSlimeBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (!m_start || m_dying || m_isDead || m_isTransforming)
+        if (!m_start || m_dying || m_isTransforming)
             return;
 
         if (!m_transform)
@@ -233,16 +238,10 @@ public class DemonSlimeBehaviour : MonoBehaviour
             }
         }
         
-        //Death
-        if (m_isDead)
-        {
-            m_animator.SetTrigger("Death");
-            m_body2d.velocity = new Vector2(0, 0);
-            m_dying = true;
-        }
+        
         
         //Attack
-        else if (m_attack && !m_isAttacking)
+        if (m_attack && !m_isAttacking)
         {
             m_animator.SetTrigger("Attack");
             inputX = 0;
@@ -290,6 +289,11 @@ public class DemonSlimeBehaviour : MonoBehaviour
         m_isTransforming = false;
         m_transform = true;
         transform.GetChild(1).gameObject.SetActive(true);
-        GetComponent<LifeManagerDemonSlime>().ReSuscribeLife();
+        // GetComponent<LifeManagerDemonSlime>().ReSuscribeLife();
+    }
+
+    public void EndDeath()
+    {
+        Destroy(gameObject);
     }
 }
