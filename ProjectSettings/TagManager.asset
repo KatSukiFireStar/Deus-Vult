@@ -10,6 +10,7 @@ TagManager:
   - PlayerCollider
   - Trigger
   - PlayerLife
+  - BoD
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class CheckCollisionWithEnnemi : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Ennemi") || other.CompareTag("DemonSlime"))
+		if (other.CompareTag("Ennemi") || other.CompareTag("DemonSlime") || other.CompareTag("BoD"))
 		{
 			damageTrigger.Trigger();
 			hurtEvent.Value = true;

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7996941560975586517}
   - component: {fileID: 3728516092026755616}
   - component: {fileID: 3878578280200180795}
+  - component: {fileID: 2105260166011645829}
   m_Layer: 7
   m_Name: Bringer Of Death
-  m_TagString: Untagged
+  m_TagString: BoD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.24332786, y: 0.1392478, z: -0.74996394}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7587949073541741268}
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0074239373, y: 0.28035843}
+  m_Offset: {x: 0.0040920153, y: 0.28507075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.75, y: 0}
@@ -153,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47891366, y: 0.6207795}
+  m_Size: {x: 0.276851, y: 0.5500948}
   m_EdgeRadius: 0
 --- !u!50 &3728516092026755616
 Rigidbody2D:
@@ -181,7 +182,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!114 &3878578280200180795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,10 +201,26 @@ MonoBehaviour:
   deltaAttack: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  takeDamageEventSO: {fileID: 0}
-  deadEventSO: {fileID: 0}
-  startEventSO: {fileID: 0}
+    m_Bits: 64
+  takeDamageEventSO: {fileID: 11400000, guid: 71bc90096b63e45fab589b7d4a44467f, type: 2}
+  deadEventSO: {fileID: 11400000, guid: 173ba34a347e54c4eb4ae996efb81274, type: 2}
+  startEventSO: {fileID: 11400000, guid: e490277a93d534080b829d65772ead4c, type: 2}
+--- !u!114 &2105260166011645829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232801740681987429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02e622a45c4a4fab9b5bf65f2301080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 200
+  lifeEvent: {fileID: 11400000, guid: 62ed60595a1f64b00b64d6b68112ddbb, type: 2}
+  takeDamageEventSO: {fileID: 11400000, guid: 71bc90096b63e45fab589b7d4a44467f, type: 2}
+  deadEventSO: {fileID: 11400000, guid: 173ba34a347e54c4eb4ae996efb81274, type: 2}
 --- !u!1 &3333225272244510966
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7587949073541741268}
   - component: {fileID: 9121858524354326775}
+  - component: {fileID: 7807536711361976926}
   m_Layer: 0
   m_Name: ColliderAttack
   m_TagString: Untagged
@@ -265,7 +283,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.08759308, y: 0.40732473}
@@ -281,3 +299,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.37537372, y: 0.2809801}
   m_EdgeRadius: 0
+--- !u!114 &7807536711361976926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333225272244510966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1b2c3ab13bee844bbd786de1cde526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTriggers: []

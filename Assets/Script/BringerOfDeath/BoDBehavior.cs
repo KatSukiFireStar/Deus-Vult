@@ -54,6 +54,7 @@ public class BoDBehavior : MonoBehaviour
         startEventSO.PropertyChanged += StartEventSOOnPropertyChanged;
 
         _deltaAttacked = deltaAttack;
+        startEventSO.Value = true;
     }
 
     private void StartEventSOOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -93,7 +94,7 @@ public class BoDBehavior : MonoBehaviour
         if (!_start || _dying || _isDead)
             return;
 
-        if (_chasing)
+        if (!_chasing)
         {
             if ((_body2d.position.x < minX && _inputX < 0) || (_body2d.position.x > maxX && _inputX > 0))
             {
@@ -121,8 +122,7 @@ public class BoDBehavior : MonoBehaviour
             _deltaAttacked -= Time.deltaTime;
             if (_deltaAttacked < 0)
             {
-                _deltaAttacked = deltaAttack;
-                _attack = true;
+                _deltaAttacked = 0;
             }
         }
         
@@ -150,14 +150,10 @@ public class BoDBehavior : MonoBehaviour
         
         RaycastHit2D[] hits = Physics2D.BoxCastAll(_body2d.position, Vector2.one * 0.75f, 0f, new(_saveInputX, 0), 5f,
             layerMask);
-        float dist = -1;
-        bool attackb = false;
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider != null)
+            if (hit.collider)
             {
-                dist = hit.distance;
-                
                 if (hit.distance <= 1f)
                 {
                     _attack = true;
@@ -175,13 +171,13 @@ public class BoDBehavior : MonoBehaviour
         //Death
         if (_isDead)
         {
-            _animator.SetTrigger("Death");
+            _animator.SetTrigger("IsDead");
             _body2d.velocity = new Vector2(0, 0);
             _dying = true;
         }
         
         //Attack
-        else if (_attack && !_isAttacking)
+        else if (_attack && !_isAttacking && _deltaAttacked < 0)
         {
             _animator.SetTrigger("Attack");
             _inputX = 0;
@@ -191,7 +187,7 @@ public class BoDBehavior : MonoBehaviour
         //Hurt
         else if (_takeDamage && !_isHurt && !_isAttacking)
         {
-            _animator.SetTrigger("Hurt");
+            _animator.SetBool("IsHurting", true);
             _inputX = 0;
             _isHurt = true;
             _body2d.velocity = new Vector2(-_saveInputX * m_speed, 0);
@@ -221,5 +217,11 @@ public class BoDBehavior : MonoBehaviour
         takeDamageEventSO.Value = false;
         _isHurt = false;
         _body2d.velocity = new Vector2(_inputX * m_speed, 0);
+        _animator.SetBool("IsHurting", false);
+    }
+    
+    public void EndDeath()
+    {
+        Destroy(gameObject);
     }
 }

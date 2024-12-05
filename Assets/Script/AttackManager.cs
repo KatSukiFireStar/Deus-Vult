@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class AttackManager : MonoBehaviour
@@ -15,6 +16,9 @@ public class AttackManager : MonoBehaviour
 		}else if (other.gameObject.CompareTag("DemonSlime"))
 		{
 			other.gameObject.GetComponent<LifeManagerDemonSlime>().LifeEvent.Value -= attackPoint;
+		}else if (other.gameObject.CompareTag("BoD"))
+		{
+			other.gameObject.GetComponent<LifeManagerBoD>().LifeEvent.Value -= attackPoint;
 		}
 	}
 }
